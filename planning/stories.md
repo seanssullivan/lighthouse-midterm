@@ -114,7 +114,9 @@ ROUTE                 Method            Access              Data
 - '/'                 Get               user, resturant     Render a welcome page
 - '/menu'             Get               user, resturant     Render all menu items and user checkout items
 - '/menu/:id'         Get               user, resturant     Render item
-- '/checkout'         Get               user                Render final order
+- '/order'            Get               user                Render final order items
+                      POST              user                Add an item to an order
+                      PUT               user                Update the quantity of an item in an order
 
 ##### API
 ROUTE                 Method            Access              Data
@@ -123,10 +125,10 @@ ROUTE                 Method            Access              Data
 - '/api/menu/:id      Get               user, resturant     Data of item
                       Put               resturant           Update item
                       Delete            resturant           Take item off menu (soft delete)
-- '/api/checkout/:id  Get               user, resturant     Get all items in the shopping cart
-                      Post              user                Add item to checkout
-                      Put               user                Update item in checkout
-                      Delete            user                Delete item from checkout (hard delete)
+- '/api/order/:id     Get               user, resturant     Get all items in the order
+                      Post              user                Add item to order
+                      Put               user                Update item in order
+                      Delete            user                Delete item from order (hard delete)
 
 ##### Admin
 ROUTE                 Method            Access              Data
