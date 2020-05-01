@@ -15,7 +15,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 #### User
 - As a client, I want to be able to order food.
 - I want to see the price listed beside each item.
-- I want to be able to quckly order food without logging in.
+- I want to be able to quickly order food without logging in.
 - I want to see a list of the current items in my cart while browsing the menu.
 - When I am ready to checkout, I want to be able to quickly hit a checkout button.
 - After clicking to checkout, I want to see a summary of my order.
@@ -29,16 +29,17 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - (Stretch) When I'm in a hurry, I want to be able to quickly repeat my last order.
 
 #### Owner
-- As an owner, I want to be notified of new orders immediatly.
+- As an owner, I want to be notified of new orders immediatly by text.
 - I want to see a list of all recent and outstanding orders placed through the website.
 - I want the orders listed chronologically as they came in.
 - I want the orders that require confirmation listed above the outstanding orders.
 - I want to be able to specify how long it will take to fulfill it.
-- I want the customer to be notified by text message when the order it ready for pickup.
+- I want the customer to be notified by text message when the order is ready for pickup.
 ##### Stretch
 - (Stretch) I want to know how much time has passed since each order came in.
-- (Stretch) I want to be able to see the items on the menu.
+- (Stretch) I want to be able to see and edit the items on the menu.
 - (Stretch) I want see which items are the most popular.
+- (Stretch) I want to be able to post a discount that has a start time and a time it expires.
 
 ### Database ERD
 ##### menu_item table
@@ -47,6 +48,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - description          VARCHAR(255)
 - cost                 REAL
 - image_url            VARCHAR(255)
+- sold_out             BOOLEAN
 
 ##### orders table
 - id                   SERIAL PRIMARY KEY
@@ -66,11 +68,11 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - item_id              INTEGER REFERENCES menu_item(id)
 - quantity             INTEGER NOT NULL DEFAULT 1
 
-##### extras table
+##### extras table (Stretch)
 - id                   SERIAL PRIMARY KEY
 - name                 VARCHAR(255)
 
-##### order_extras table
+##### order_extras table (Stretch)
 - id                   SERIAL PRIMARY KEY
 - order_id             INTEGER REFERENCES orders(id)
 - order_item_id        INTEGER REFERENCES order_items(id)
@@ -114,9 +116,7 @@ ROUTE                 Method            Access              Data
 - '/'                 Get               user, resturant     Render a welcome page
 - '/menu'             Get               user, resturant     Render all menu items and user checkout items
 - '/menu/:id'         Get               user, resturant     Render item
-- '/order'            Get               user                Render final order items
-                      POST              user                Add an item to an order
-                      PUT               user                Update the quantity of an item in an order
+- '/order'            Post              user                Add an item to an order
 
 ##### API
 ROUTE                 Method            Access              Data
@@ -125,10 +125,6 @@ ROUTE                 Method            Access              Data
 - '/api/menu/:id      Get               user, resturant     Data of item
                       Put               resturant           Update item
                       Delete            resturant           Take item off menu (soft delete)
-- '/api/order/:id     Get               user, resturant     Get all items in the order
-                      Post              user                Add item to order
-                      Put               user                Update item in order
-                      Delete            user                Delete item from order (hard delete)
 
 ##### Admin
 ROUTE                 Method            Access              Data
@@ -136,7 +132,7 @@ ROUTE                 Method            Access              Data
 - '/admin/menu'       GET               restaurant          Render all menu items and ratings
                       POST              restaurant          Add an item to the menu
                       PUT               restaurant          Update an item
-                      DELETE            restaurant          Delete an item
+                      DELETE            restaurant          Delete an item (Soft delete)
 - '/admin/orders'     GET               restaurant          Render all orders
 - '/admin/orders/:id' GET               restaurant          Render order           
                       PUT               restaurant          Update order
@@ -144,7 +140,7 @@ ROUTE                 Method            Access              Data
 ### PANCAKES!!! (No idea how we'll find photos for these...)
 - The Basic Stack - A short stack of our famous buttermilk pancakes.
 - Stack Overflowed - Stack of pancakes overflowing with berries and whipped cream.
-- Hoisted Stack - You just can stack pancakes higher than this... We tried.
+- Hoisted Stack - You just can't stack pancakes higher than this... We tried.
 - Stacked Middleware - The breakfast wrap redefined: bacon, sausage and hashbrowns wrapped in a pancake.
 - The D.O.M. Stack - We combined a danish, an omelette and some muesli cereal into a pancake. Are we crazy? Why yes, yes we are!
 - Curried Stack – It's like chicken and waffles! But using butter chicken and pancakes.
