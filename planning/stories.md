@@ -41,71 +41,71 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - (Stretch) I want see which items are the most popular.
 
 ### Database ERD
-- menu_item
-  - id                   SERIAL PRIMARY KEY
-  - name                 VARCHAR(255)
-  - description          VARCHAR(255)
-  - cost                 REAL
-  - image_url            VARCHAR(255)
+##### menu_item table
+- id                   SERIAL PRIMARY KEY
+- name                 VARCHAR(255)
+- description          VARCHAR(255)
+- cost                 REAL
+- image_url            VARCHAR(255)
 
-- orders
-  - id                   SERIAL PRIMARY KEY
-  - name                 VARCHAR(255)
-  - phone                VARCHAR(16)
-  - email                VARCHAR(255)
-  - ordered_at           DATE
-  - confirmed_at         DATE
-  - estimated_time       DATE
-  - ready_at             DATE
-  - completed_at         DATE
-  - notes                TEXT
+##### orders table
+- id                   SERIAL PRIMARY KEY
+- name                 VARCHAR(255)
+- phone                VARCHAR(16)
+- email                VARCHAR(255)
+- ordered_at           DATE
+- confirmed_at         DATE
+- estimated_time       DATE
+- ready_at             DATE
+- completed_at         DATE
+- notes                TEXT
 
-- order_items
-  - id                   SERIAL PRIMARY KEY
-  - order_id             INTEGER REFERENCES orders(id)
-  - item_id              INTEGER REFERENCES menu_item(id)
-  - quantity             INTEGER NOT NULL DEFAULT 1
+##### order_items table
+- id                   SERIAL PRIMARY KEY
+- order_id             INTEGER REFERENCES orders(id)
+- item_id              INTEGER REFERENCES menu_item(id)
+- quantity             INTEGER NOT NULL DEFAULT 1
 
-- extras
-  - id                   SERIAL PRIMARY KEY
-  - name                 VARCHAR(255)
+##### extras table
+- id                   SERIAL PRIMARY KEY
+- name                 VARCHAR(255)
 
-- order_extras
-  - id                   SERIAL PRIMARY KEY
-  - order_id             INTEGER REFERENCES orders(id)
-  - order_item_id        INTEGER REFERENCES order_items(id)
-  - extra_id             INTEGER REFERENCES extras(id)
+##### order_extras table
+- id                   SERIAL PRIMARY KEY
+- order_id             INTEGER REFERENCES orders(id)
+- order_item_id        INTEGER REFERENCES order_items(id)
+- extra_id             INTEGER REFERENCES extras(id)
 
-- item_reviews
-  - id                   SERIAL PRIMARY KEY
-  - visitor_id           VARCHAR(255)
-  - item_id              INTEGER REFERENCES menu_item(id)
-  - rating               INTEGER
+##### item_reviews table
+- id                   SERIAL PRIMARY KEY
+- visitor_id           VARCHAR(255)
+- item_id              INTEGER REFERENCES menu_item(id)
+- rating               INTEGER
 
-##### Stretch
-- discounts
-  - id                   SERIAL PRIMARY KEY
-  - amount               REAL
-  - start_date           DATE
-  - end_date             DATE
-  - is_recurring         BOOLEAN
+#### Stretch
+##### discounts
+- id                   SERIAL PRIMARY KEY
+- amount               REAL
+- start_date           DATE
+- end_date             DATE
+- is_recurring         BOOLEAN
 
-##### Stretch's Stretch
-- recurring_pattern
-  - id                   SERIAL PRIMARY KEY
-  - discount_id          INTEGER REFERENCES discounts(id)
-  - recurring_type       VARCHAR(8)
-    ###### Options:
-    - daily
-    - weekly
-    - monthly
-    - yearly
-  - separation_count     INTEGER
-  - max_num_occurrences  INTEGER
-  - day_of_week          INTEGER
-  - week_of_month        INTEGER
-  - day_of_month         INTEGER
-  - month_of_year        INTEGER
+#### Stretch's Stretch
+##### recurring_pattern
+- id                   SERIAL PRIMARY KEY
+- discount_id          INTEGER REFERENCES discounts(id)
+- recurring_type       VARCHAR(8)
+  ###### Options:
+  - daily
+  - weekly
+  - monthly
+  - yearly
+- separation_count     INTEGER
+- max_num_occurrences  INTEGER
+- day_of_week          INTEGER
+- week_of_month        INTEGER
+- day_of_month         INTEGER
+- month_of_year        INTEGER
 
 ### Routes & Endpoints
 
