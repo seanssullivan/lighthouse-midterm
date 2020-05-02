@@ -4,19 +4,9 @@ const faker = require('faker');
 const fs = require('fs');
 
 /**
- * Generate an order extra record.
- * @param {Number} orderId 
- * @param {Number} numMenuItems 
- */
-const createOrderExtra = function(orderId, numExtras) {
-  const extraId = Math.ceil(Math.random() * numExtras);
-  return [ orderId, itemId, quantity ];
-};
-
-/**
  * Generate mock order extras records.
- * @param {Number} numOrders 
- * @param {Number} numExtras 
+ * @param {Number} numOrders - the number of orders records in the database.
+ * @param {Number} numExtras - the number of extras records in the database.
  */
 const generateFakeOrderExtras = function(numOrderItems, numExtras) {
   let orderExtras = [];
@@ -36,8 +26,8 @@ const generateFakeOrderExtras = function(numOrderItems, numExtras) {
 
 /**
  * Save order data to a file.
- * @param {String} fileName -- the number of order records in the database.
- * @param {Array} data - the number of menu item records in the database.
+ * @param {String} fileName - File name data is to be saved to.
+ * @param {Array} data - An array of randomly generated order data.
  */
 const outputData = function(fileName, data) {
   let text = '-- order_extras table seeds here\n\nINSERT INTO order_extras (order_item_id, extra_id) VALUES\n';
