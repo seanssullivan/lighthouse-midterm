@@ -26,7 +26,7 @@ const generateRandomOrder = function(date) {
   newCompleteDate.setMinutes(newCompleteDate.getMinutes() + Math.round(Math.random() * 15));
 
   return [
-    faker.name.findName(),
+    faker.name.findName().replace(/\'/g, `''`),
     faker.phone.phoneNumber(),
     faker.internet.email(),
     newOrderDate,
