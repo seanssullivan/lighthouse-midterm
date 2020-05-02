@@ -12,7 +12,7 @@ const createOrderItem = function(orderId, numMenuItems) {
   const itemId = Math.ceil(Math.random() * numMenuItems);
   const quantity = Math.ceil(Math.random() * 4);
   return [ orderId, itemId, quantity ];
-}
+};
 
 /**
  * Generate mock order items records.
@@ -30,7 +30,7 @@ const generateFakeOrderItems = function(numOrders, numMenuItems) {
     orderItems = orderItems.concat(newOrderItems);
   }
   return orderItems;
-}
+};
 
 /**
  * Save order data to a file.
