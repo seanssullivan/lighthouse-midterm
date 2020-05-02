@@ -116,4 +116,6 @@ if (require.main === module) {
   console.log('Running faker.js script...');
   const orders = generateOrdersForDates('2020-01-01', '2020-04-30');
   outputData('orders.sql', orders);
+} else {
+  module.exports = generateOrdersForDates;
 }
