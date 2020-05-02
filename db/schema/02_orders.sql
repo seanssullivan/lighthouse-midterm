@@ -7,10 +7,10 @@ CREATE TABLE orders (
   name VARCHAR(255) NOT NULL,
   phone VARCHAR(32) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  ordered_at DATE,
-  confirmed_at DATE,
+  ordered_at TIMESTAMP,
+  confirmed_at TIMESTAMP,
   estimated_time INTEGER,
-  ready_at DATE,
-  completed_at DATE,
+  ready_at TIMESTAMP,
+  completed_at TIMESTAMP,
   notes TEXT
 );
