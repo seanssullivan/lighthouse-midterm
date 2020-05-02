@@ -29,11 +29,11 @@ const generateRandomOrder = function(date) {
     faker.name.findName().replace(/\'/g, `''`),
     faker.phone.phoneNumber(),
     faker.internet.email(),
-    newOrderDate,
-    newConfirmDate,
+    newOrderDate.toISOString(),
+    newConfirmDate.toISOString(),
     newEstimate,
-    newReadyDate,
-    newCompleteDate
+    newReadyDate.toISOString(),
+    newCompleteDate.toISOString()
   ];
 };
 
