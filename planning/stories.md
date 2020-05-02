@@ -65,7 +65,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 ##### order_items table
 - id                   SERIAL PRIMARY KEY
 - order_id             INTEGER REFERENCES orders(id)
-- item_id              INTEGER REFERENCES menu_item(id)
+- item_id              INTEGER REFERENCES menu_items(id)
 - quantity             INTEGER NOT NULL DEFAULT 1
 
 ##### extras table (Stretch)
@@ -81,7 +81,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 ##### item_reviews table
 - id                   SERIAL PRIMARY KEY
 - visitor_id           VARCHAR(255)
-- item_id              INTEGER REFERENCES menu_item(id)
+- item_id              INTEGER REFERENCES menu_items(id)
 - rating               INTEGER
 
 #### Stretch
