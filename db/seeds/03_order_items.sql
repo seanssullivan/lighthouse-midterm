@@ -1,6 +1,6 @@
 -- order_items table seeds here
 
-INSERT INTO orders (order_id, item_id, quantity) VALUES
+INSERT INTO order_items (order_id, item_id, quantity) VALUES
 (1, 7, 1),
 (1, 4, 3),
 (2, 4, 4),
