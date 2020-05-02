@@ -55,11 +55,11 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - name                 VARCHAR(255)
 - phone                VARCHAR(16)
 - email                VARCHAR(255)
-- ordered_at           DATE
-- confirmed_at         DATE
-- estimated_time       DATE
-- ready_at             DATE
-- completed_at         DATE
+- ordered_at           TIMESTAMP
+- confirmed_at         TIMESTAMP
+- estimated_time       INTEGER
+- ready_at             TIMESTAMP
+- completed_at         TIMESTAMP
 - notes                TEXT
 
 ##### order_items table
