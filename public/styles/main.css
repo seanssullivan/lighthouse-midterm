@@ -4,4 +4,11 @@ body {
     color: #244751; }
 
 .header {
-  background-color: yellow; }
+  background-color: yellow;
+  height: 75px;
+  display: flex;
+  align-items: center; }
+
+.container {
+  width: 80%;
+  margin: 0 auto; }

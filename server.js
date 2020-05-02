@@ -108,7 +108,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 // ~~ Landing Page
 app.get("/", (req, res, next) => {
-  res.render("base");
+  res.render("menu");
 });
 
 // ~~ Catch all routes

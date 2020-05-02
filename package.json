@@ -8,7 +8,7 @@
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js",
-    "watch-sass": "node-sass --watch style/main.scss  public/styles/main.css"
+    "watch-sass": "node-sass --watch styles/main.scss  public/styles/main.css"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
