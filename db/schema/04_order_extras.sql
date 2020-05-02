@@ -10,7 +10,6 @@ CREATE TABLE extras (
 
 CREATE TABLE order_extras (
   id SERIAL PRIMARY KEY NOT NULL,
-  order_id INTEGER REFERENCES orders(id),
   order_item_id INTEGER REFERENCES order_items(id),
   extra_id INTEGER REFERENCES extras(id)
 );

@@ -3,7 +3,7 @@
 INSERT INTO menu_items (name, description, cost, image_url) VALUES
 ('The Basic Stack', 'A short stack of buttermilk pancakes. There''s really nothing surprising here.', 9.99, ''),
 ('Stack Overflowed', 'A short stack of pancakes overflowing with fresh berries and whipped cream.', 13.37, ''),
-('The Express Stack', 'We infused each layer of these coffee-flavoured pancakes with the same amount of caffeine as three cups of coffee. Then we doused them in a coffee-flavoured syrup. These pancakes are guaranteed to keep you going all day, and all night!')
+('The Express Stack', 'We infused each layer of these coffee-flavoured pancakes with the same amount of caffeine as three cups of coffee. Then we doused them in a coffee-flavoured syrup. These pancakes are guaranteed to keep you going all day, and all night!', 14.50, ''),
 ('The Hoisted Stack', 'You just can''t stack pancakes higher than this... We tried.', 17.99, ''),
 ('Stacked Middleware', 'The breakfast wrap redefined: eggs, bacon and sausage wrapped inside a pancake.', 16.99, ''),
 ('The D.O.M. Stack', 'We combined a danish, an omelette and some muesli cereal into a pancake. Are we crazy? Why yes, yes we are!', 15.99, ''),
