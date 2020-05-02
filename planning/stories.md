@@ -42,7 +42,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - (Stretch) I want to be able to post a discount that has a start time and a time it expires.
 
 ### Database ERD
-##### menu_item table
+##### menu_items table
 - id                   SERIAL PRIMARY KEY
 - name                 VARCHAR(255)
 - description          VARCHAR(255)
