@@ -9,4 +9,4 @@ VALUES ('The Basic Stack', 'A short stack of buttermilk pancakes. There''s reall
 ('Curried Stack', 'It''s like chicken and waffles! But using butter chicken and pancakes.', 16.99, ''),
 ('The MEAN Stack', 'Cheesy cornmeal pancakes made with a mix of muenster, edam, asiago and neufchâtel cheese. Because the only thing better than cheese, is more cheese! Who doesn''t love cheese?!', 20.99, ''),
 ('Stack Closure', 'Pancakes covered in ice cream, brownies, cookie dough and chocolate syrup. The perfect solution to every problem!', 14.99, ''),
-('The Full Stack', 'This stack of pancakes can do anything/everything. Seriously! We crammed so much stuff into these that there may not be much pancake left... The only thing we didn''t add was coffee.', 23.99, '');
+('The Full Stack', 'This stack of pancakes can do anything/everything. Seriously! We crammed so much stuff into these that there may not be much pancake left... The only thing we didn''t add was coffee.', 27.99, '');
