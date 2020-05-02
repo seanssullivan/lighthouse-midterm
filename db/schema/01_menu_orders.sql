@@ -24,3 +24,10 @@ CREATE TABLE orders (
   completed_at DATE,
   notes TEXT
 );
+
+CREATE TABLE order_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  order_id INTEGER REFERENCES orders(id),
+  item_id INTEGER REFERENCES menu_items(id),
+  quantity INTEGER NOT NULL DEFAULT 1
+);
