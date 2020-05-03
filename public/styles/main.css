@@ -1,7 +1,6 @@
 body {
-  background-color: orangered; }
-  body h1 {
-    color: #244751; }
+  background-color: orangered;
+  font-size: 62.5%; }
 
 .header {
   background-color: yellow;
@@ -12,3 +11,104 @@ body {
 .container {
   width: 80%;
   margin: 0 auto; }
+
+.menu {
+  background-color: pink;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 4rem;
+  padding-top: 5rem; }
+  .menu__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 4rem;
+    background-color: green; }
+
+.checkout {
+  background-color: palevioletred;
+  position: relative;
+  font-size: 1rem;
+  height: 70vh;
+  color: white; }
+  .checkout__title {
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 4px white solid;
+    line-height: 0.8rem; }
+    .checkout__title h3 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+      font-weight: 400;
+      text-align: center; }
+  .checkout__list {
+    margin: 1rem; }
+    .checkout__list li {
+      display: grid;
+      grid-template-columns: 2fr repeat(2, 1fr);
+      margin-bottom: 0.5rem; }
+    .checkout__list--quantity {
+      text-align: center; }
+    .checkout__list--price {
+      text-align: end; }
+  .checkout__total {
+    position: absolute;
+    bottom: 80px;
+    left: 1rem;
+    border-top: 4px solid white;
+    padding-top: 15px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); }
+    .checkout__total--title {
+      text-align: end; }
+    .checkout__total--price {
+      grid-column-start: 4;
+      grid-column-end: 5;
+      text-align: end; }
+  .checkout__button {
+    position: absolute;
+    bottom: 10px;
+    width: 65%;
+    height: 30px;
+    line-height: 30px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    left: 65px; }
+
+.jumbotron {
+  display: flex;
+  justify-content: space-around;
+  height: calc(100vh - 75px);
+  align-items: center; }
+  .jumbotron__img img {
+    width: 45%; }
+
+.menuItem {
+  background-color: orchid;
+  overflow-y: scroll; }
+  .menuItem__pic {
+    background-color: blue;
+    margin: 0.5rem;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .menuItem__pic img {
+      width: 90%;
+      height: auto; }
+  .menuItem__text {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+    font-size: 1.5rem; }
+  .menuItem__stars {
+    display: flex;
+    height: 25px;
+    margin: 1rem; }
+    .menuItem__stars img {
+      height: 100%;
+      width: auto; }

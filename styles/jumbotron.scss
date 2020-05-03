@@ -1,0 +1,12 @@
+.jumbotron {
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - 75px);
+  align-items: center;
+
+  &__img {
+    img {
+      width: 45%;
+    }
+  }
+}

@@ -1,3 +1,9 @@
 @import '_base';
 @import '_header';
-@import '_utils.scss'
+@import '_utils.scss';
+
+@import 'menu';
+
+@import 'checkout';
+@import 'jumbotron';
+@import 'menuItem';

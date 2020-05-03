@@ -108,8 +108,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 // ~~ Landing Page
 app.get("/", (req, res, next) => {
-  res.render("menu");
+  res.render("landing");
 });
+
+app.get("/menu", (req, res, next) => {
+  res.render("menu")
+})
 
 // ~~ Catch all routes
 app.get('*', (req, res, next) => {

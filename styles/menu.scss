@@ -1,0 +1,14 @@
+.menu {
+  background-color: pink;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 4rem;
+  padding-top: 5rem;
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem 4rem;
+    background-color: green;
+  }
+}
