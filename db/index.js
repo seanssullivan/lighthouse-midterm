@@ -1,3 +1,5 @@
+// db/index.js
+
 // load .env data into process.env
 require('dotenv').config();
 
@@ -41,12 +43,12 @@ class DatabaseConnection {
    * @param {String} text - A valid SQL query string.
    * @param {Object} params - Query parameters.
    */
-  query(text, params) {
-    return this.pool
-      .query(text, params)
-      .then(res => res.rows);
+  async query(text, params) {
+    const client = await this.pool.connect();
+    const response = await client.query(text, params);
+    client.release();
+    return response.rows;
   }
-
 }
 
 // Instantiate the database connection
