@@ -3,10 +3,22 @@ require('dotenv').config();
 
 const { Pool } = require("pg");
 
-class Database {
+const MenuItemsTable = require('./tables/menu_items');
+const OrdersTable = require('./tables/orders');
+const OrderItemsTable = require('./tables/order_items');
+
+/**
+ * Manages all interactions with the database.
+ */
+class DatabaseConnection {
 
   constructor() {
     this.pool = new Pool(this._parameters());
+
+    // Connected database tables
+    this.menuItems = new MenuItemsTable(this);
+    this.orders = new OrdersTable(this);
+    this.orderItems = new OrderItemsTable(this);
   }
 
   /**
@@ -30,7 +42,18 @@ class Database {
    * @param {Object} params - Query parameters.
    */
   query(text, params) {
-    return pool.query(text, params);
+    return this.pool
+      .query(text, params)
+      .then(res => res.rows);
   }
 
 }
+
+// Instantiate the database connection
+const databaseConnection = new DatabaseConnection();
+
+// Freeze the database connection object
+Object.freeze(databaseConnection);
+
+// Export the database connection
+module.exports = databaseConnection;

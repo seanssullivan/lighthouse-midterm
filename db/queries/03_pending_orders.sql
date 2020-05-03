@@ -13,6 +13,6 @@ SELECT
 FROM orders
 JOIN order_items ON order_id = orders.id
 JOIN menu_items ON menu_items.id = order_items.item_id
-WHERE orders.ready_at IS NULL
+WHERE orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL
 GROUP BY orders.id, orders.name, orders.phone, orders.email, ordered_at
 ORDER BY orders.confirmed_at ASC;
