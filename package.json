@@ -1,16 +1,20 @@
 {
-  "name": "node-skeleton",
+  "name": "lighthouse-midterm",
   "version": "1.0.0",
-  "description": "",
+  "description": "Midterm project for the Lighthouse Labs Web Development Bootcamp.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js",
     "watch-sass": "node-sass --watch styles/main.scss  public/styles/main.css"
   },
-  "author": "Lighthouse Labs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanssullivan/lighthouse-midterm.git"
+  },
+  "author": "Sean Sullivan and Heisey",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -27,6 +31,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "faker": "^4.1.0",
     "mocha": "^7.1.2",
     "nodemon": "^1.19.1"
   }
