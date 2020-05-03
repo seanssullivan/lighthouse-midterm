@@ -71,12 +71,12 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ~~ Setup sass task runner
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
-}));
+// app.use("/styles", sass({
+//   src: __dirname + "/styles",
+//   dest: __dirname + "/public/styles",
+//   debug: true,
+//   outputStyle: 'expanded'
+// }));
 
 
 // ~~ Set request time to request obj
@@ -102,9 +102,21 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 
 // ~~ Landing Page
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/", (req, res, next) => {
+  res.render("landing");
 });
+
+app.get("/menu", (req, res, next) => {
+  res.render("menu")
+})
+
+app.get("/order", (req, res, next) => {
+  res.render("orderinfo")
+})
+
+app.get("thankyou", (req, res, next) => {
+  res.render("thankyou")
+})
 
 // ~~ Catch all routes
 app.get('*', (req, res, next) => {
