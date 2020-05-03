@@ -29,6 +29,7 @@ const db = require('./db');
 
 // ?? Routes
 const menuRoutes = require("./routes/menu");
+const ordersRoutes = require("./routes/orders");
 const widgetsRoutes = require("./routes/widgets");
 
 // ?? Middleware
@@ -99,6 +100,7 @@ app.use((req, res, next) => {
 
 // ?????????????????????????? Routes ??????????????????????????????
 app.use("/api/menu", menuRoutes(db));
+app.use("/api/orders", ordersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 
 // ~~ Landing Page
@@ -118,8 +120,12 @@ app.get("thankyou", (req, res, next) => {
   res.render("thankyou")
 })
 
+app.get("admin"/ (req, res, next) => {
+  res.render("admin")
+})
+
 // ~~ Catch all routes
-app.get('*', (req, res, next) => {
+app.get("*", (req, res, next) => {
   res.status(404).send('sorry you got lost')
 })
 
