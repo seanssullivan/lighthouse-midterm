@@ -129,7 +129,6 @@ app.get("*", (req, res, next) => {
   res.status(404).send('sorry you got lost')
 })
 
-
 // ~~ Connect App
 app.listen(PORT, () => {
   console.log(chalk.blue.bold.inverse(`<<<<< App is listening on ${PORT} >>>>>`));
