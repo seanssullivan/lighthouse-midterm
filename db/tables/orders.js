@@ -52,10 +52,10 @@ class OrdersTable {
       VALUES ($1, $2, $3)
       RETURN id;
     `;
+    
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
     this.db.query(insertOrderQueryString, values)
       .then((orderId) => this.db.orderItems.add(orderId, orderObj.items));
-    
   }
 
   /**
