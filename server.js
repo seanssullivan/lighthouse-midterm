@@ -120,7 +120,7 @@ app.get("thankyou", (req, res, next) => {
   res.render("thankyou")
 })
 
-app.get("admin"/ (req, res, next) => {
+app.get("admin", (req, res, next) => {
   res.render("admin")
 })
 
