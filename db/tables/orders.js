@@ -14,7 +14,7 @@ class OrdersTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildQuery(options) {
+  _buildSelectQuery(options) {
     if (!options) options = { where: '' };
 
     return `
@@ -37,9 +37,28 @@ class OrdersTable {
    * Retrieve all order records.
    */
   all() {
-    const queryString = this._buildQuery();
+    const queryString = this._buildSelectQuery();
     return this.db
       .query(queryString);
+  }
+
+  /**
+   * Begins an order record.
+   * @param {Object} name 
+   */
+  async add(orderObj) {
+    const insertOrderQueryString = `
+      INSERT INTO orders (name, phone, email)
+      VALUES ($1, $2, $3)
+      RETURN *;
+    `;
+    const values = [ orderObj.name, orderObj.phone, orderObj.email ];
+    const orderResponse = await this.db.query(insertOrderQueryString, values);
+    const itemsResponse = await this.db.orderItems.add(orderObj.items);
+    return {
+      order: orderResponse,
+      items: itemsResponse
+    };
   }
 
   /**
@@ -47,7 +66,7 @@ class OrdersTable {
    * @param {Number} id 
    */
   get(id) {
-    const queryString = this._buildQuery({ where: 'orders.id = $1'});
+    const queryString = this._buildSelectQuery({ where: 'orders.id = $1'});
     return this.db
       .query(queryString, [id]);
   }
@@ -55,8 +74,8 @@ class OrdersTable {
   /**
    * Retrieves any recent orders.
    */
-  recent() {
-    const queryString = this._buildQuery({ where: 'orders.confirmed_at IS NULL' });
+  getRecent() {
+    const queryString = this._buildSelectQuery({ where: 'orders.confirmed_at IS NULL' });
     return this.db
       .query(queryString);
   }
@@ -64,25 +83,71 @@ class OrdersTable {
   /**
    * Retrieves any pending orders.
    */
-  pending() {
-    const queryString = this._buildQuery({ where: 'orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL' });
+  getPending() {
+    const queryString = this._buildSelectQuery({ where: 'orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL' });
     return this.db
       .query(queryString);
   }
 
-  ready() {
-    const queryString = this._buildQuery({ where: 'orders.ready_at IS NOT NULL AND orders.completed_at IS NULL' });
+   /**
+   * Confirm receipt of a new order.
+   * @param {Number} orderId 
+   * @param {Object} orderItems
+   */
+  markConfirmed(orderId) {
+    const queryString = `
+      UPDATE orders
+      SET confirmed_at = NOW()
+      WHERE order_id = $1;
+    `;
+    return this.db
+      .query(queryString, [orderId]);
+  }
+
+  /**
+   * Retrieves any ready orders.
+   */
+  getReady() {
+    const queryString = this._buildSelectQuery({ where: 'orders.ready_at IS NOT NULL AND orders.completed_at IS NULL' });
     return this.db
       .query(queryString);
   }
 
   /**
+   * Update order as ready.
+   * @param {Number} orderId 
+   */
+  markReady(orderId) {
+    const queryString = `
+      UPDATE orders
+      SET ready_at = NOW()
+      WHERE order_id = $1;
+    `;
+    return this.db
+      .query(queryString, [orderId]);
+  }
+
+  /**
    * Retrieves all completed orders.
    */
-  completed() {
-    const queryString = this._buildQuery({ where: 'orders.completed_at IS NOT NULL' });
+  getCompleted() {
+    const queryString = this._buildSelectQuery({ where: 'orders.completed_at IS NOT NULL' });
     return this.db
       .query(queryString);
+  }
+
+   /**
+   * Update order as ready.
+   * @param {Number} orderId 
+   */
+  markCompleted(orderId) {
+    const queryString = `
+      UPDATE orders
+      SET completed_at = NOW()
+      WHERE order_id = $1;
+    `;
+    return this.db
+      .query(queryString, [orderId]);
   }
 
 }

@@ -25,6 +25,29 @@ class OrderItemsTable {
       .query(queryString, [orderId]);
   }
 
+  /**
+   * Inserts new order items.
+   * @param {Array} orderItems 
+   */
+  add(orderItems) {
+    const queryValueStrings = [];
+    let insertValues = [];
+    const placeholderCounter = 1;
+    
+    // Loop over available order items and format them
+    for (const i = 0; i < orderItems.length; i++) {
+      queryValueStrings.push(`(${counter}, ${counter + 1}, ${counter + 2})`);
+      insertValues = insertValues.concat([ item.orderId, item.menuItemId, item.quantity ]);
+      placeholderCounter += 3;
+    }
+
+    // Compile the query string
+    const insertOrderItemsQueryString = `INSERT INTO order_items (order_id, item_id, quantity) VALUES `;
+    insertOrderItemsQueryString += queryValueStrings.join(', ') + ' RETURNING *;';
+    return this.db
+      .query(insertOrderItemsQueryString, insertValues);
+  }
+
 }
 
 module.exports = OrderItemsTable;
