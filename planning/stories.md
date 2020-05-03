@@ -42,7 +42,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - (Stretch) I want to be able to post a discount that has a start time and a time it expires.
 
 ### Database ERD
-##### menu_item table
+##### menu_items table
 - id                   SERIAL PRIMARY KEY
 - name                 VARCHAR(255)
 - description          VARCHAR(255)
@@ -55,17 +55,17 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 - name                 VARCHAR(255)
 - phone                VARCHAR(16)
 - email                VARCHAR(255)
-- ordered_at           DATE
-- confirmed_at         DATE
-- estimated_time       DATE
-- ready_at             DATE
-- completed_at         DATE
+- ordered_at           TIMESTAMP
+- confirmed_at         TIMESTAMP
+- estimated_time       INTEGER
+- ready_at             TIMESTAMP
+- completed_at         TIMESTAMP
 - notes                TEXT
 
 ##### order_items table
 - id                   SERIAL PRIMARY KEY
 - order_id             INTEGER REFERENCES orders(id)
-- item_id              INTEGER REFERENCES menu_item(id)
+- item_id              INTEGER REFERENCES menu_items(id)
 - quantity             INTEGER NOT NULL DEFAULT 1
 
 ##### extras table (Stretch)
@@ -81,7 +81,7 @@ For inspiration check out how Ritual works, but keep in mind that's implemented 
 ##### item_reviews table
 - id                   SERIAL PRIMARY KEY
 - visitor_id           VARCHAR(255)
-- item_id              INTEGER REFERENCES menu_item(id)
+- item_id              INTEGER REFERENCES menu_items(id)
 - rating               INTEGER
 
 #### Stretch
@@ -138,12 +138,13 @@ ROUTE                 Method            Access              Data
                       PUT               restaurant          Update order
 
 ### PANCAKES!!! (No idea how we'll find photos for these...)
-- The Basic Stack - A short stack of our famous buttermilk pancakes.
-- Stack Overflowed - Stack of pancakes overflowing with berries and whipped cream.
-- Hoisted Stack - You just can't stack pancakes higher than this... We tried.
-- Stacked Middleware - The breakfast wrap redefined: bacon, sausage and hashbrowns wrapped in a pancake.
+- The Basic Stack - A short stack of buttermilk pancakes. There's really nothing surprising here.
+- Stack Overflowed - A short stack of pancakes overflowing with fresh berries and whipped cream.
+- The Express Stack - We infused each layer of these coffee-flavoured pancakes with the same amount of caffeine as three cups of coffee. Then we doused them in a coffee-flavoured syrup. These pancakes are guarranteed to keep you going all day, and all night!
+- The Hoisted Stack - You just can't stack pancakes higher than this... We tried.
+- Stacked Middleware - The breakfast wrap redefined: eggs, bacon and sausage wrapped inside a pancake.
 - The D.O.M. Stack - We combined a danish, an omelette and some muesli cereal into a pancake. Are we crazy? Why yes, yes we are!
 - Curried Stack – It's like chicken and waffles! But using butter chicken and pancakes.
-- The MEAN Stack - Cheesy cornmeal pancakes made with a mix of muenster, edam, asiago and neufchâtel cheese.
-- Stack Closure - Pancakes stacked with ice cream, brownies, cookie dough and chocolate syrup.
-- The Full Stack - This stack of pancakes can do anything/everything.
+- The MEAN Stack - Cheesy cornmeal pancakes made with a mix of muenster, edam, asiago and neufchâtel cheese. Because the only thing better than cheese, is more cheese! Who doesn't love cheese?!
+- Stack Closure - Pancakes covered in ice cream, brownies, cookie dough and chocolate syrup. The perfect solution to every problem!
+- The Full Stack - This stack of pancakes can do anything/everything. Seriously! We crammed so much stuff into these that there may not be much pancake left... The only thing we didn't add was coffee.
