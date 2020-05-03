@@ -50,15 +50,12 @@ class OrdersTable {
     const insertOrderQueryString = `
       INSERT INTO orders (name, phone, email)
       VALUES ($1, $2, $3)
-      RETURN *;
+      RETURN id;
     `;
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
-    const orderResponse = await this.db.query(insertOrderQueryString, values);
-    const itemsResponse = await this.db.orderItems.add(orderObj.items);
-    return {
-      order: orderResponse,
-      items: itemsResponse
-    };
+    this.db.query(insertOrderQueryString, values)
+      .then((orderId) => this.db.orderItems.add(orderId, orderObj.items));
+    
   }
 
   /**

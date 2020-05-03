@@ -29,7 +29,7 @@ class OrderItemsTable {
    * Inserts new order items.
    * @param {Array} orderItems 
    */
-  add(orderItems) {
+  add(orderId, orderItems) {
     const queryValueStrings = [];
     let insertValues = [];
     const placeholderCounter = 1;
@@ -37,7 +37,7 @@ class OrderItemsTable {
     // Loop over available order items and format them
     for (const i = 0; i < orderItems.length; i++) {
       queryValueStrings.push(`(${counter}, ${counter + 1}, ${counter + 2})`);
-      insertValues = insertValues.concat([ item.orderId, item.menuItemId, item.quantity ]);
+      insertValues = insertValues.concat([ orderId, item.menuItemId, item.quantity ]);
       placeholderCounter += 3;
     }
 
