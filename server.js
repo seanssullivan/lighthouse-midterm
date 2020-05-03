@@ -115,6 +115,14 @@ app.get("/menu", (req, res, next) => {
   res.render("menu")
 })
 
+app.get("/order", (req, res, next) => {
+  res.render("orderinfo")
+})
+
+app.get("thankyou", (req, res, next) => {
+  res.render("thankyou")
+})
+
 // ~~ Catch all routes
 app.get('*', (req, res, next) => {
   res.status(404).send('sorry you got lost')

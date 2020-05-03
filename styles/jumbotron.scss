@@ -1,12 +1,38 @@
 .jumbotron {
-  display: flex;
-  justify-content: space-between;
-  height: calc(100vh - 75px);
+  display: grid;
+  grid-template-columns: 2fr 1fr 3fr;
+  grid-template-rows: calc(100vh - 75px);
   align-items: center;
 
   &__img {
+
     img {
-      width: 45%;
+      width: 100%;
+    }
+  }
+
+  &__block {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    color: white;
+
+    &--title {
+      font-size: 2rem;
+    }
+
+    &--text {
+      font-size: 1.5rem;
+      grid-row-start: 3;
+      grid-row-end: 4;
+    }
+
+    &--button {
+      grid-row-start: 5;
+      grid-row-end: 6;
     }
   }
 }
