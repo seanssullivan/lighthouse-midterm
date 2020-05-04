@@ -108,7 +108,7 @@ module.exports = (db) => {
       .then(data => {
         res.status(201).json({
           status: 'success',
-          data: data
+          data: data[0]
         })
       })
       .catch(err => {
@@ -125,7 +125,7 @@ module.exports = (db) => {
       .then(data => {
         res.status(200).json({
           status: 'success',
-          data: data
+          data: data[0]
         })
       })
       .catch(err => {
@@ -142,7 +142,7 @@ module.exports = (db) => {
       .then(data => {
         res.status(204).json({
           status: 'success',
-          data: data
+          data: data[0]
         })
       })
       .catch(err => {
@@ -159,7 +159,7 @@ module.exports = (db) => {
       .then(data => {
         res.status(204).json({
           status: 'success',
-          data: data
+          data: data[0]
         })
       })
       .catch(err => {
