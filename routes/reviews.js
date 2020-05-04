@@ -4,6 +4,10 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+
+  /**
+   * Retrieve all reviews for a user.
+   */
   router.get("/reviews", (req, res, next) => {
     const visitorId = req.session.user_id;
     db.itemReviews.get(visitorId)
@@ -21,6 +25,9 @@ module.exports = (db) => {
       })
   });
 
+  /**
+   * Add a review.
+   */
   router.post("/reviews", (req, res, next) => {
     const visitorId = req.session.user_id;
     db.orders.add(visitorId, req.body)
@@ -34,6 +41,9 @@ module.exports = (db) => {
       })
   })
 
+  /**
+   * Update a review.
+   */
   router.put("/reviews", (req, res, next) => {
     const visitorId = req.session.user_id;
     db.orders.update(visitorId, req.body)
@@ -46,4 +56,6 @@ module.exports = (db) => {
         })
       })
   })
-}
+  
+  return router;
+};
