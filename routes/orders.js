@@ -62,7 +62,7 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message })
       })
   });
-
+  
   /**
    * Retrieves all ready orders.
    */
