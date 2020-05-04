@@ -74,8 +74,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // ~~ Cookie Sessions
 app.use(cookieSession({
   name: 'session',
-  keys: ["testkey1", "testkey2", "testkey3"],
-  maxAge: 24 * 60 * 60 * 1000
+  keys: ["testkey1", "testkey2", "testkey3"]
 }));
 
 // ~~ Setup sass task runner
