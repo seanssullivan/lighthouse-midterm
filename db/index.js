@@ -10,6 +10,7 @@ const OrdersTable = require('./tables/orders');
 const OrderItemsTable = require('./tables/order_items');
 const ItemReviewsTable = require('./tables/item_reviews');
 const OrderExtrasTable = require('./tables/order_extras');
+const DiscountsTable = require('./tables/discounts');
 
 /**
  * Manages all interactions with the database.
@@ -25,6 +26,7 @@ class DatabaseConnection {
     this.orderItems = new OrderItemsTable(this);
     this.itemReviews = new ItemReviewsTable(this);
     this.orderExtras = new OrderExtrasTable(this);
+    this.discounts = new DiscountsTable(this);
   }
 
   /**
