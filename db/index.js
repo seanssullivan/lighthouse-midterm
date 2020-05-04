@@ -8,6 +8,7 @@ const { Pool } = require("pg");
 const MenuItemsTable = require('./tables/menu_items');
 const OrdersTable = require('./tables/orders');
 const OrderItemsTable = require('./tables/order_items');
+const ItemReviewsTable = require('./tables/item_reviews');
 
 /**
  * Manages all interactions with the database.
@@ -21,6 +22,7 @@ class DatabaseConnection {
     this.menuItems = new MenuItemsTable(this);
     this.orders = new OrdersTable(this);
     this.orderItems = new OrderItemsTable(this);
+    this.itemReviews = new ItemReviewsTable(this);
   }
 
   /**
