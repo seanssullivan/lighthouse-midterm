@@ -40,6 +40,7 @@ const { visitors } = require('./middleware/visitors');
 const path = require('path');
 
 // ??????????????????????? Vendor Modules ?????????????????????????
+const methodOverride = require('method-override');
 const bodyParser = require("body-parser");
 const chalk = require('chalk')
 const express = require("express");
@@ -65,6 +66,9 @@ app.use(helmet())
 
 // ~~ Set up template engine
 app.set("view engine", "pug");
+
+// ~~ Include method override
+app.use(methodOverride('_method'));
 
 // ~~ Import public dir
 app.use(express.static(path.join(__dirname, '/public')));
