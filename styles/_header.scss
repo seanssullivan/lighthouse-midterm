@@ -1,6 +1,19 @@
 .header {
-  background-color: yellow;
+  background-color: green;
   height: 75px;
-  display: flex;
-  align-items: center;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &--img {
+      height: 65px;
+      width: auto;
+    }
+
+    &--text {
+      font-size: 2rem;
+      color: white;
+    }
+  }
 }

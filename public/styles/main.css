@@ -14,10 +14,17 @@ body {
   text-align: center; }
 
 .header {
-  background-color: yellow;
-  height: 75px;
-  display: flex;
-  align-items: center; }
+  background-color: green;
+  height: 75px; }
+  .header__logo {
+    display: flex;
+    align-items: center; }
+    .header__logo--img {
+      height: 65px;
+      width: auto; }
+    .header__logo--text {
+      font-size: 2rem;
+      color: white; }
 
 .container {
   width: 80%;
