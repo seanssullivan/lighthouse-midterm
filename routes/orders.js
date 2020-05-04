@@ -183,5 +183,23 @@ module.exports = (db) => {
       })
   })
 
+  /**
+   * Retrieves all order items for an order.
+   */
+  router.get("/:id/items", (req, res, next) => {
+    
+    db.orderItems.get(req.params.id)
+      .then(data => {
+        res.status(200).json({
+          status: 'success',
+          data: data
+        })
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
+  })
+
+
   return router;
 };
