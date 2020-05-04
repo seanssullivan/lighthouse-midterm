@@ -11,4 +11,4 @@ class OrderExtrasTable {
 
 }
 
-module.exports = ItemReviewsTable;
+module.exports = OrderExtrasTable;
