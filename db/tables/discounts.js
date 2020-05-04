@@ -26,15 +26,21 @@ class DiscountsTable {
    * Inserts a discount.
    * @param {Object} discount 
    */
-  add(discount) {
+  async add(discount) {
     const queryString = `
       INSERT INTO discounts (amount, start_date, end_date, is_recurring)
       VALUES ($1, $2, $3, $4)
       RETURN *;
     `;
     const values = [ discount.amount, discount.startDate, discount.endDate ];
-    return this.db
-      .query(queryString, values);
+    const rDiscount = await this.db.query(queryString, values);
+    
+    if (discount.isRecurring = true) {
+      const rPattern = await this.db.recurringPattern.add(rDiscount.id, discount);
+      return Object.assign(rDiscount, rPattern);
+    } else {
+      return rDiscount;
+    }
   }
 
   /**
@@ -49,7 +55,7 @@ class DiscountsTable {
       RETURN *;
     `;
     return this.db
-      .query(queryString, [discountId]);
+      .query(queryString, [ discountId ]);
   }
 
   /**
