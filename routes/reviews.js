@@ -15,9 +15,7 @@ module.exports = (db) => {
         res.json({
           status: 'success',
           results: data.length,
-          data: {
-            itemReviews: data
-          }
+          data: data
         })
       })
       .catch(err => {
@@ -34,9 +32,7 @@ module.exports = (db) => {
       .then(data => {
         res.status(201).json({
           status: 'success',
-          data: {
-            itemReviews: data
-          }
+          data: data
         })
       })
   })
@@ -50,12 +46,10 @@ module.exports = (db) => {
       .then(data => {
         res.status(204).json({
           status: 'success',
-          data: {
-            itemReviews: data 
-          }
+          data: data
         })
       })
   })
-  
+
   return router;
 };
