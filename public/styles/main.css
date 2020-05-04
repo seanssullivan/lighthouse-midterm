@@ -23,6 +23,15 @@ body {
   width: 80%;
   margin: 0 auto; }
 
+.admin {
+  background-color: royalblue;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: calc(100vh - 75px);
+  column-gap: 30px;
+  align-items: center;
+  color: white; }
+
 .menu {
   background-color: pink;
   display: grid;
@@ -34,6 +43,28 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem 4rem;
     background-color: green; }
+
+.adminNav {
+  background-color: slategrey;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+  .adminNav h3 {
+    font-size: 2rem;
+    margin-bottom: 0; }
+  .adminNav span {
+    padding-top: 8px;
+    font-size: 1rem; }
+  .adminNav__orders {
+    display: flex;
+    flex-direction: column; }
+  .adminNav__menu {
+    display: flex;
+    flex-direction: column; }
+  .adminNav__reviews {
+    display: flex;
+    flex-direction: column; }
 
 .checkout {
   background-color: palevioletred;

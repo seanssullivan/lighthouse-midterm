@@ -1,3 +1,10 @@
 .admin {
   background-color: royalblue;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: calc(100vh - 75px);
+  column-gap: 30px;
+  align-items: center;
+  color: white;
+
 }
