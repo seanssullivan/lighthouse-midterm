@@ -17,5 +17,8 @@ const visitors = (database) => {
 
 const assignVisitorId = (database) => {
   const visitorId = generateRandomString(16);
+  // TODO: Use database connection to update user visits table.
   return visitorId;
 }
+
+module.exports = { visitors };
