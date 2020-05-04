@@ -76,6 +76,9 @@ module.exports = (db) => {
           data: data
         })
       })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
   })
 
   /**
@@ -91,6 +94,9 @@ module.exports = (db) => {
           data: data
         })
       })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
   })
 
   /**
@@ -104,6 +110,9 @@ module.exports = (db) => {
           status: 'success',
           data: data
         })
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
       })
   })
 
@@ -119,6 +128,9 @@ module.exports = (db) => {
           data: data
         })
       })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
   })
 
   /**
@@ -132,6 +144,9 @@ module.exports = (db) => {
           status: 'success',
           data: data
         })
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
       })
   })
 
@@ -147,6 +162,9 @@ module.exports = (db) => {
           data: data
         })
       })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
   })
 
   /**
@@ -159,6 +177,9 @@ module.exports = (db) => {
         res.status(204).json({
           status: 'success'
         })
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
       })
   })
 
