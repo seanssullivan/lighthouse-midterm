@@ -17,7 +17,8 @@ class ItemReviewsTable {
   add(visitorId, review) {
     const queryString = `
       INSERT INTO item_reviews (visitor_id, item_id, rating)
-      VALUES ($1, $2, $3);
+      VALUES ($1, $2, $3)
+      RETURN *;
     `;
     const values = [ visitorId, review.itemId, review.rating ];
     return this.db
@@ -32,7 +33,8 @@ class ItemReviewsTable {
     const queryString = `
       SELECT id, item_id, rating
       FROM item_reviews
-      WHERE visitor_id = $1;
+      WHERE visitor_id = $1
+      RETURN *;
     `;
     return this.db
       .query(queryString, [visitorId]);
@@ -47,7 +49,8 @@ class ItemReviewsTable {
     const queryString = `
       UPDATE item_reviews
       SET rating = $1
-      WHERE visitor_id = $2 AND item_id = $3;
+      WHERE visitor_id = $2 AND item_id = $3
+      RETURN *;
     `;
     const values = [ review.rating, visitorId, review.itemId ];
     return this.db
