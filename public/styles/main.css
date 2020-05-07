@@ -30,6 +30,12 @@ body {
   width: 80%;
   margin: 0 auto; }
 
+.underline {
+  width: 90%;
+  border-bottom: 4px solid white;
+  margin-top: 0;
+  margin: 0 auto; }
+
 .admin {
   background-color: royalblue;
   display: grid;
@@ -52,26 +58,25 @@ body {
     background-color: green; }
 
 .adminNav {
+  padding-left: 1rem;
   background-color: slategrey;
-  height: 70vh;
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around; }
-  .adminNav h3 {
+  justify-content: space-between; }
+  .adminNav__orders {
+    margin-top: 40px; }
+  .adminNav__reviews {
+    margin-bottom: 80px; }
+  .adminNav__title {
     font-size: 2rem;
+    margin-top: -10px;
     margin-bottom: 0; }
   .adminNav span {
-    padding-top: 8px;
-    font-size: 1rem; }
-  .adminNav__orders {
-    display: flex;
-    flex-direction: column; }
-  .adminNav__menu {
-    display: flex;
-    flex-direction: column; }
-  .adminNav__reviews {
-    display: flex;
-    flex-direction: column; }
+    padding-top: 15px;
+    display: block; }
 
 .checkout {
   background-color: palevioletred;
@@ -170,3 +175,39 @@ body {
     font-size: 20px;
     margin: 1rem;
     color: gold; }
+
+.orders {
+  background-color: red;
+  height: 70vh;
+  font-size: 1rem;
+  padding-left: 1rem;
+  position: relative; }
+  .orders__title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px; }
+  .orders__list {
+    list-style: none;
+    width: 90%;
+    margin: 0 -10px;
+    margin-top: 30px; }
+  .orders__item {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -20px;
+    padding-top: 30px; }
+  .orders__index {
+    position: absolute;
+    bottom: 30px; }
+    .orders__index--prev {
+      position: absolute;
+      left: 30px; }
+    .orders__index--text {
+      position: absolute;
+      left: 120px; }
+    .orders__index--page {
+      position: absolute;
+      left: 300px; }
+    .orders__index--next {
+      position: absolute;
+      left: 420px; }

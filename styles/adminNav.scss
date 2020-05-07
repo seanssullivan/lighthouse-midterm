@@ -1,33 +1,29 @@
 .adminNav {
+  padding-left: 1rem;
   background-color: slategrey;
-
-  height: 70vh;
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  h3 {
+  &__orders {
+    margin-top: 40px;
+  }
+
+  &__reviews {
+    margin-bottom: 80px;
+  }
+
+  &__title {
     font-size: 2rem;
+    margin-top: -10px;
     margin-bottom: 0;
   }
 
   span {
-    padding-top: 8px;
-    font-size: 1rem;
-  }
-
-  &__orders {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__menu {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__reviews {
-    display: flex;
-    flex-direction: column;
+    padding-top: 15px;
+    display: block;
   }
 }
