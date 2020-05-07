@@ -1,0 +1,35 @@
+.orderInfo {
+  background-color: plum;
+
+  height: 70vh;
+  font-size: 1rem;
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 30px;
+
+    &--extras {
+      text-align: right;
+      list-style-position: outside;
+      list-style: disc;
+
+      li:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+  }
+}
