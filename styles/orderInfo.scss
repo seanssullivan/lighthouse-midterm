@@ -3,6 +3,7 @@
 
   height: 70vh;
   font-size: 1rem;
+  position: relative;
 
   &__title {
     text-align: center;
@@ -31,5 +32,18 @@
         margin-top: 10px;
       }
     }
+  }
+
+  &__timeline {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    left: -20px;
+  }
+
+  &__button {
+    position: absolute;
+    bottom: 25px;
+    right: 5%;
   }
 }
