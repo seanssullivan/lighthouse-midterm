@@ -57,27 +57,6 @@ body {
     gap: 4rem 4rem;
     background-color: green; }
 
-.adminNav {
-  padding-left: 1rem;
-  background-color: slategrey;
-  height: 700px;
-  width: 100%;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; }
-  .adminNav__orders {
-    margin-top: 40px; }
-  .adminNav__reviews {
-    margin-bottom: 80px; }
-  .adminNav__title {
-    font-size: 2rem;
-    margin-top: -10px;
-    margin-bottom: 0; }
-  .adminNav span {
-    padding-top: 15px;
-    display: block; }
-
 .checkout {
   background-color: palevioletred;
   position: relative;
@@ -175,6 +154,27 @@ body {
     font-size: 20px;
     margin: 1rem;
     color: gold; }
+
+.adminNav {
+  padding-left: 1rem;
+  background-color: slategrey;
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .adminNav__orders {
+    margin-top: 40px; }
+  .adminNav__reviews {
+    margin-bottom: 80px; }
+  .adminNav__title {
+    font-size: 2rem;
+    margin-top: -10px;
+    margin-bottom: 0; }
+  .adminNav span {
+    padding-top: 15px;
+    display: block; }
 
 .ordersList {
   background-color: red;
