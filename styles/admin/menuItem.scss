@@ -1,0 +1,49 @@
+.menuItemInfo {
+  background-color: purple;
+
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__discount {
+    width: 90%;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__start {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__end {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__recurrence {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+}

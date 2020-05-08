@@ -9,3 +9,37 @@
     text-decoration: none;
     text-align: center;
 }
+
+.button__toggle[type="checkbox"] {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  -webkit-appearance: none;
+  background-color: #c6c6c6;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.button__toggle:checked[type="checkbox"] {
+  background-color: green;
+}
+
+.button__toggle[type="checkbox"]:before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  background: white;
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.button__toggle:checked[type="checkbox"]:before {
+  left: 20px;
+}
