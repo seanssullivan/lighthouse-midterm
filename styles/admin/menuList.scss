@@ -1,0 +1,34 @@
+.menuList {
+  background-color: plum;
+
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding-top: 20px;
+
+    &--flag {
+      text-align: right;
+      font-size: 0.8rem;
+    }
+
+    &--status {
+      text-align: right;
+    }
+  }
+}

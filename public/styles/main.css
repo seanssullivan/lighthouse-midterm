@@ -176,6 +176,29 @@ body {
     padding-top: 15px;
     display: block; }
 
+.menuList {
+  background-color: plum;
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
+  color: white; }
+  .menuList__title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px; }
+  .menuList__list {
+    list-style-type: none; }
+  .menuList__item {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    padding-top: 20px; }
+    .menuList__item--flag {
+      text-align: right;
+      font-size: 0.8rem; }
+    .menuList__item--status {
+      text-align: right; }
+
 .ordersList {
   background-color: red;
   height: 70vh;
