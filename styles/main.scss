@@ -1,10 +1,11 @@
 // ~~ Base styles
 @import '_base';
+@import '_variables';
+@import '_utils.scss';
 
 // ~~ Components
 @import 'buttons';
 @import '_header';
-@import '_utils.scss';
 
 // ~~ Pages
 @import 'admin';

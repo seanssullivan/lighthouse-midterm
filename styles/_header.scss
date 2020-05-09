@@ -1,5 +1,5 @@
 .header {
-  background-color: green;
+  background-color: $primary__color;
   height: 75px;
 
   &__logo {
@@ -13,7 +13,7 @@
 
     &--text {
       font-size: 2rem;
-      color: white;
+      color: $secondary__color;
     }
   }
 }

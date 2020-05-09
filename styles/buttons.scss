@@ -1,13 +1,47 @@
 .button__primary {
   bottom: 10px;
+  width: 120px;
+  font-size: 30px;
+  height: 40px;
+  line-height: 40px;
+  background-color: transparent;
+  color: $secondary__color;
+  border: 2px solid $secondary__color;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.button__primary--small {
+  bottom: 10px;
+  width: 80px;
+  font-size: 20px;
+  height: 25px;
+  line-height: 25px;
+  background-color: transparent;
+  color: $secondary__color;
+  border: 2px solid $secondary__color;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.button__primary--invert {
+  bottom: 10px;
     width: 120px;
     font-size: 30px;
     height: 40px;
     line-height: 40px;
-    background-color: white;
-    color: black;
+    background-color: $primary__color;
+    color: $secondary__color;
     text-decoration: none;
     text-align: center;
+}
+
+.button__primary--invert:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+  @include button__shadow;
 }
 
 .button__toggle[type="checkbox"] {
