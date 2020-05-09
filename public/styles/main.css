@@ -37,6 +37,25 @@ body {
   text-decoration: none;
   text-align: center; }
 
+.button__primary--large {
+  bottom: 10px;
+  width: 100%;
+  font-size: 30px;
+  height: 40px;
+  line-height: 40px;
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center; }
+
+.button__primary:hover,
+.button__primary--small:hover,
+.button__primary--large:hover {
+  background-color: #91bbd1;
+  transition: all 0.3s ease-in-out; }
+
 .button__primary--invert {
   bottom: 10px;
   width: 120px;
@@ -87,7 +106,10 @@ body {
 
 .header {
   background-color: #549BBa;
-  height: 75px; }
+  height: 75px;
+  width: 100%;
+  position: fixed;
+  z-index: 100; }
   .header__logo {
     display: flex;
     align-items: center; }
@@ -109,20 +131,21 @@ body {
 
 .menu {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-column-gap: 4rem;
   padding-top: 5rem; }
   .menu__items {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 4rem 4rem; }
 
 .checkout {
   background-color: #549BBa;
-  position: relative;
+  position: fixed;
   font-size: 1rem;
   height: 600px;
-  color: #fff; }
+  color: #fff;
+  right: 10%; }
   .checkout__title {
     width: 90%;
     margin: 0 auto;
@@ -140,7 +163,7 @@ body {
     .checkout__list li {
       width: 95%;
       display: grid;
-      grid-template-columns: 1fr 2fr repeat(2, 1fr);
+      grid-template-columns: 1fr 4fr repeat(2, 1fr);
       margin-bottom: 1rem; }
     .checkout__list--remove {
       margin-left: -13px; }
@@ -168,6 +191,12 @@ body {
     bottom: 10px;
     width: 65%;
     left: 65px; }
+
+.checkout:hover {
+  -webkit-box-shadow: 18px 18px 16px -4px rgba(84, 155, 186, 0.46);
+  -moz-box-shadow: 18px 18px 16px -4px rgba(84, 155, 186, 0.46);
+  box-shadow: 18px 18px 16px -4px rgba(84, 155, 186, 0.46);
+  transition: all 0.3s ease-in-out; }
 
 .jumbotron {
   display: grid;
@@ -206,10 +235,10 @@ body {
       width: 100%;
       height: auto; }
   .menuItem__text {
-    padding: 30px 0;
+    padding: 10px 0;
     display: flex;
     justify-content: space-between;
-    margin: 0 1rem;
+    margin: 0 5%;
     font-size: 1.5rem; }
   .menuItem__stars {
     display: flex;
@@ -217,17 +246,21 @@ body {
     font-size: 20px;
     color: gold;
     position: absolute;
-    bottom: 6%;
+    bottom: 15%;
     left: 5%; }
     .menuItem__stars i {
       padding-right: 5px; }
   .menuItem__button {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
-    display: flex;
-    width: 40%;
-    justify-content: space-between; }
+    position: relative; }
+    .menuItem__button--info {
+      position: absolute;
+      bottom: 14%;
+      right: 5%; }
+    .menuItem__button--add {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      width: 90%; }
 
 .menuItem:hover {
   -webkit-box-shadow: 18px 18px 16px -4px rgba(84, 155, 186, 0.46);

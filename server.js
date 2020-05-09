@@ -125,6 +125,10 @@ app.get("/menu", (req, res, next) => {
   res.render("menu")
 })
 
+app.get("/iteminfo", (req, res, next) => {
+  res.render("itemInfo")
+})
+
 app.get("/order", (req, res, next) => {
   res.render("orderinfo")
 })
