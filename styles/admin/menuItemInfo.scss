@@ -6,6 +6,7 @@
   width: 100%;
   font-size: 1rem;
   color: white;
+  position: relative;
 
   &__title {
     font-size: 2rem;
@@ -89,5 +90,11 @@
         padding-left: 10px;
       }
     }
+  }
+
+  &__button {
+    position: absolute;
+    right: 5%;
+    bottom: 5%
   }
 }

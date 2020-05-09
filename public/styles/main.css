@@ -212,7 +212,8 @@ body {
   height: 700px;
   width: 100%;
   font-size: 1rem;
-  color: white; }
+  color: white;
+  position: relative; }
   .menuItemInfo__title {
     font-size: 2rem;
     text-align: center;
@@ -267,6 +268,10 @@ body {
     justify-content: space-between; }
     .menuItemInfo__year--buttons span {
       padding-left: 10px; }
+  .menuItemInfo__button {
+    position: absolute;
+    right: 5%;
+    bottom: 5%; }
 
 .menuList {
   background-color: plum;
