@@ -1,0 +1,42 @@
+.menuItemInfo
+  .menuItemInfo__title STACKED OVERFLOWED
+  .underline
+  .menuItemInfo__discount
+    span DISCOUNT PERCENT
+    span 15%
+  .menuItemInfo__start
+    span DISCOUNT START
+    span 29 - 5 - 2020
+  .menuItemInfo__end
+    span DISCOUNT END
+    span 29 - 5 - 2021
+  .menuItemInfo__recurrence
+    span DISCOUNT RECURRENCE
+  .menuItemInfo__container
+    .menuItemInfo__day
+      input(type='checkbox' class='button__toggle')
+      <p>EVERY <span class="menuItemInfo__day--interval">5</span>th DAY</p>
+      .menuItemInfo__day--buttons
+        span
+          i(class="fas fa-plus")
+        span 
+          i(class="fas fa-minus")
+    .menuItemInfo__month
+      input(type='checkbox' class='button__toggle')
+      <p>EVERY <span class="menuItemInfo__month--interval">5</span>th Month</p>
+      .menuItemInfo__month--buttons
+        span
+          i(class="fas fa-plus")
+        span
+          i(class="fas fa-minus")
+    .menuItemInfo__year
+      input(type='checkbox' class='button__toggle')
+      <p>EVERY <span class="menuItemInfo__year--interval">5</span>th YEAR</p>
+      .menuItemInfo__year--buttons
+        span
+          i(class="fas fa-plus")
+        span
+          i(class="fas fa-minus")
+  .menuItemInfo__button
+    .button__primary Button
+

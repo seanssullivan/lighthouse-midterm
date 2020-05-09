@@ -1,6 +1,9 @@
 .header {
-  background-color: green;
+  background-color: $primary__color;
   height: 75px;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 
   &__logo {
     display: flex;
@@ -13,7 +16,7 @@
 
     &--text {
       font-size: 2rem;
-      color: white;
+      color: $secondary__color;
     }
   }
 }

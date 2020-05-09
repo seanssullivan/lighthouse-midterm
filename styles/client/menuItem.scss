@@ -1,0 +1,64 @@
+.menuItem {
+  background-color: $primary__color;
+
+  color: $secondary__color;
+  height: 600px;
+  position: relative;
+
+  &__pic {
+    background-color: $secondary__color;
+    margin: 0.5rem;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5%;
+    font-size: 1.5rem;
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    color: $star__color;
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+
+    i {
+      padding-right: 5px;
+    }
+  }
+
+  &__button {
+    position: relative;
+    &--info {
+      position: absolute;
+      bottom: 14%;
+      right: 5%;
+    }
+
+    &--add {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      width: 90%;
+    }
+  }
+}
+
+.menuItem:hover {
+  @include card__shadow;
+  transition: all 0.3s ease-in-out;
+}

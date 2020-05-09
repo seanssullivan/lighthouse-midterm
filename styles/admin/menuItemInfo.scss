@@ -1,0 +1,100 @@
+.menuItemInfo {
+  background-color: $primary__color;
+
+  padding-top: 33px;
+  height: 700px;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+  position: relative;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__discount {
+    width: 90%;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__start {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__end {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__recurrence {
+    width: 90%;
+    padding-top: 30px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &__container {
+    width: 65%;
+    margin-right: 5&;
+    margin-left: 30%;
+    padding-top: 30px;
+  }
+
+  &__day {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--buttons {
+      span {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--buttons {
+      span {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__year {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--buttons {
+      span {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: 5%;
+    bottom: 5%
+  }
+}

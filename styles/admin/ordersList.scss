@@ -1,0 +1,52 @@
+.ordersList {
+  background-color: $primary__color;
+
+  height: 70vh;
+  font-size: 1rem;
+  padding-left: 1rem;
+  position: relative;
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__list {
+    list-style: none;
+    width: 90%;
+    margin: 0 -10px;
+    margin-top: 30px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -20px;
+    padding-top: 30px;
+  }
+
+  &__index {
+    position: absolute;
+    bottom: 30px;
+
+    &--prev {
+      position: absolute;
+      left: 30px;
+    }
+
+    &--text {
+      position: absolute;
+      left: 120px;
+    }
+
+    &--page {
+      position: absolute;
+      left: 300px;
+    }
+    &--next {
+      position: absolute;
+      left: 420px;
+    }
+  }
+}

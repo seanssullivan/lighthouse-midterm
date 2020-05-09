@@ -1,12 +1,26 @@
+// ~~ Base styles
 @import '_base';
-@import 'buttons';
-@import '_header';
+@import '_variables';
 @import '_utils.scss';
 
+// ~~ Components
+@import 'buttons';
+@import '_header';
+
+// ~~ Pages
 @import 'admin';
 @import 'menu';
 
-@import 'adminNav';
-@import 'checkout';
-@import 'jumbotron';
-@import 'menuItem';
+// ~~ Client Components
+@import 'client/checkout';
+@import 'client/jumbotron';
+@import 'client/itemInfo';
+@import 'client/menuItem';
+
+// ~~ Admin Components
+@import 'admin/adminNav';
+@import 'admin/menuItemInfo';
+@import 'admin/menuList';
+@import 'admin/ordersList';
+@import 'admin/orderInfo';
+@import 'admin/timeline';

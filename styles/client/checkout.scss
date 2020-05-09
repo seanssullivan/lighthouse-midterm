@@ -1,0 +1,114 @@
+.checkout {
+  background-color: $primary__color;
+  position: fixed;
+  font-size: 1rem;
+  height: 600px;
+  width: 350px;
+  color: $secondary__color;
+  right: 10%;
+
+  &__title {
+
+    width: 90%;
+    margin: 0 auto;
+    border-bottom: 4px $secondary__color solid;
+    line-height: 0.8rem;
+
+    h3 {
+      margin-bottom: 25px;
+      font-size: 2rem;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &__list {
+    padding-top: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    li {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    &--toggle {
+      margin-left: -13px;
+      font-size: 1.3rem;
+    }
+
+    &--item {
+      padding-left: 15px;
+    }
+
+    &--total {
+      text-align: end;
+      flex-grow: 2;
+    }
+  }
+
+  &__info {
+    padding-top: 5px;
+    width: 100%;
+
+    &--quantity {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
+      padding-left: 15px;
+    }
+
+    &--quantityTotal {
+      text-align: end;
+    }
+
+    &--topping {
+      padding-top: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
+      padding-left: 15px;
+    }
+
+    &--toppingTotal {
+      text-align: end;
+    }
+  }
+
+  &__total {
+    position: absolute;
+    bottom: 80px;
+    left: 1rem;
+    border-top: 4px solid white;
+    padding-top: 15px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    &--title {
+      text-align: end;
+    }
+
+    &--price {
+      grid-column-start: 4;
+      grid-column-end: 5;
+      text-align: end;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    bottom: 10px;
+    width: 65%;
+    left: 65px;
+  }
+}
+
+.checkout:hover {
+  @include card__shadow;
+  transition: all 0.3s ease-in-out;
+}
