@@ -122,19 +122,21 @@ body {
       color: #fff; }
 
 .admin {
-  background-color: royalblue;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: calc(100vh - 75px);
   column-gap: 30px;
   align-items: center;
-  color: white; }
+  color: white;
+  height: 100vh;
+  padding-top: calc((100vh - (100vh - 75px)) / 2); }
 
 .menu {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-column-gap: 4rem;
-  padding-top: 5rem; }
+  padding-top: calc((100vh - 600px) / 2);
+  position: relative; }
   .menu__items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -173,17 +175,29 @@ body {
       font-size: 1.3rem; }
     .checkout__list--item {
       padding-left: 15px; }
-    .checkout__list--price {
+    .checkout__list--total {
       text-align: end;
       flex-grow: 2; }
   .checkout__info {
-    padding-top: 15px;
+    padding-top: 5px;
     width: 100%; }
     .checkout__info--quantity {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
       padding-left: 15px; }
+    .checkout__info--quantityTotal {
+      text-align: end; }
+    .checkout__info--topping {
+      padding-top: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
+      padding-left: 15px; }
+    .checkout__info--toppingTotal {
+      text-align: end; }
   .checkout__total {
     position: absolute;
     bottom: 80px;
@@ -325,13 +339,13 @@ body {
 
 .adminNav {
   padding-left: 1rem;
-  background-color: slategrey;
   height: 700px;
   width: 100%;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  color: black; }
   .adminNav__orders {
     margin-top: 40px; }
   .adminNav__reviews {
@@ -345,7 +359,7 @@ body {
     display: block; }
 
 .menuItemInfo {
-  background-color: purple;
+  background-color: #549BBa;
   padding-top: 33px;
   height: 700px;
   width: 100%;
@@ -412,7 +426,7 @@ body {
     bottom: 5%; }
 
 .menuList {
-  background-color: plum;
+  background-color: #549BBa;
   height: 700px;
   width: 100%;
   font-size: 1rem;
@@ -435,7 +449,7 @@ body {
       text-align: right; }
 
 .ordersList {
-  background-color: red;
+  background-color: #549BBa;
   height: 70vh;
   font-size: 1rem;
   padding-left: 1rem;
@@ -471,7 +485,7 @@ body {
       left: 420px; }
 
 .orderInfo {
-  background-color: plum;
+  background-color: #549BBa;
   height: 70vh;
   font-size: 1rem;
   position: relative; }

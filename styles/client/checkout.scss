@@ -43,21 +43,39 @@
       padding-left: 15px;
     }
 
-    &--price {
+    &--total {
       text-align: end;
       flex-grow: 2;
     }
   }
 
   &__info {
-    padding-top: 15px;
+    padding-top: 5px;
     width: 100%;
 
     &--quantity {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
       padding-left: 15px;
+    }
+
+    &--quantityTotal {
+      text-align: end;
+    }
+
+    &--topping {
+      padding-top: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% repeat(3, 1fr) 2fr;
+      column-gap: 10px;
+      padding-left: 15px;
+    }
+
+    &--toppingTotal {
+      text-align: end;
     }
   }
 
