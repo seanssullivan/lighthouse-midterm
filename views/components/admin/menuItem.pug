@@ -11,7 +11,30 @@
     span DISCOUNT END
     span 29 - 5 - 2021
   .menuItemInfo__recurrence
-    .menuItemInfo__recurrence--day
+    span DISCOUNT RECURRENCE
+    i(class="fas fa-minus")
+  .menuItemInfo__container
+    .menuItemInfo__day
       input(type='checkbox' class='button__toggle')
-      <p>EVERY <span>5</span>th DAY</p>
-      .menuItemInfo__recurrence--dayButtons
+      <p>EVERY <span class="menuItemInfo__day--interval">5</span>th DAY</p>
+      .menuItemInfo__day--buttons
+        span
+          i(class="fas fa-plus")
+        span 
+          i(class="fas fa-minus")
+    .menuItemInfo__month
+      input(type='checkbox' class='button__toggle')
+      <p>EVERY <span class="menuItemInfo__month--interval">5</span>th Month</p>
+      .menuItemInfo__month--buttons
+        span
+          i(class="fas fa-plus")
+        span
+          i(class="fas fa-minus")
+    .menuItemInfo__year
+      input(type='checkbox' class='button__toggle')
+      <p>EVERY <span class="menuItemInfo__year--interval">5</span>th YEAR</p>
+      .menuItemInfo__year--buttons
+        span
+          i(class="fas fa-plus")
+        span
+          i(class="fas fa-minus")

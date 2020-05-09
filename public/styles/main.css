@@ -208,6 +208,7 @@ body {
 
 .menuItemInfo {
   background-color: purple;
+  padding-top: 33px;
   height: 700px;
   width: 100%;
   font-size: 1rem;
@@ -243,6 +244,29 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 0 auto; }
+  .menuItemInfo__container {
+    width: 65%;
+    margin-right: 5 .menuItemInfo__container;
+    margin-left: 30%;
+    padding-top: 30px; }
+  .menuItemInfo__day {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .menuItemInfo__day--buttons span {
+      padding-left: 10px; }
+  .menuItemInfo__month {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .menuItemInfo__month--buttons span {
+      padding-left: 10px; }
+  .menuItemInfo__year {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .menuItemInfo__year--buttons span {
+      padding-left: 10px; }
 
 .menuList {
   background-color: plum;
