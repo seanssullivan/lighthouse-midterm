@@ -1,16 +1,17 @@
-.menuItem
-  .menuItem__pic
-    img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
-  .menuItem__text
-    span.menuItem__text--title STACKED OVERFLOWED
-    span.menuItem__text--price  14.99
-  .menuItem__stars
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-  .menuItem__button--info
-    .button__primary--small INFO
-  .menuItem__button--add
-    .button__primary--large ADD
+mixin menuItem(dish)
+  div(class="menuItem" id=(dish.id))
+    .menuItem__pic
+      img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
+    .menuItem__text
+      span.menuItem__text--title= dish.name
+      span.menuItem__text--price= dish.cost
+    .menuItem__stars
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    .menuItem__button--info
+      .button__primary--small INFO
+    .menuItem__button--add
+      .button__primary--large ADD
