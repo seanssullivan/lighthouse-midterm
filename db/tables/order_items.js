@@ -29,6 +29,7 @@ class OrderItemsTable {
    * Inserts new order items.
    * @param {Array} orderItems 
    */
+  // TODO: Convert to accept one order item.
   add(orderId, orderItems) {
     const queryValueStrings = [];
     let insertValues = [];
@@ -47,6 +48,8 @@ class OrderItemsTable {
     return this.db
       .query(insertOrderItemsQueryString, insertValues);
   }
+
+  // TODO: Add method to decrement order items.
 
 }
 

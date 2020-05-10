@@ -1,10 +1,12 @@
-$(() => {
+$(document).ready(function() {
+  $('#jumbotron__block--button').click(renderMenu)
+})
+
+const renderMenu = function(e) {
   $.ajax({
     method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
+    url: "/menu"
+  }).done(data => {
+    $(this).parent().parent().parent().empty().append(data)
   });
-});
+}
