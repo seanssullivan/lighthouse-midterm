@@ -1,12 +1,7 @@
-extends base
-
 block content
   .menu
     .menu__items
       include components/client/menuItem
-      include components/client/menuItem
-      include components/client/menuItem
-      include components/client/menuItem
-      include components/client/menuItem
-      include components/client/menuItem
+      for dish in data.menu
+        +menuItem(dish)
     include components/client/checkout

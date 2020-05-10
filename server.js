@@ -123,11 +123,17 @@ app.get("/", (req, res, next) => {
   res.render("landing");
 });
 
-app.get("/menu", (req, res, next) => {
-  res.render("menu")
+app.get("/menu", async (req, res, next) => {
+  const menuItems = await db.menuItems.all();
+
+  res.render("menu", {
+    data: {
+      menu: menuItems
+    }
+  })
 })
 
-app.get("/iteminfo", (req, res, next) => {
+app.get("/menu/:id", (req, res, next) => {
   res.render("itemInfo")
 })
 
