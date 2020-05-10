@@ -14,22 +14,29 @@ class OrdersTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildSelectQuery(options) {
-    if (!options) options = { where: '' };
+  _buildSelectQuery({ where = '', having = '', limit = '' }) {
 
     return `
       SELECT
         orders.id, orders.name, orders.phone, orders.email, orders.ordered_at,
         COUNT(order_items.id) AS menu_items,
         SUM(order_items.quantity) AS total_items,
-        SUM(ROUND(order_items.quantity * menu_items.cost * 100) / 100) AS total_cost
+        SUM(ROUND(order_items.quantity * menu_items.cost * 100) / 100) AS total_cost,
+        (CASE
+          WHEN orders.completed_at IS NOT NULL THEN 'completed'
+          WHEN orders.ready_at IS NOT NULL THEN 'ready'
+          WHEN orders.confirmed_at IS NOT NULL THEN 'confirmed'
+          WHEN orders.ordered_at IS NOT NULL THEN 'ordered'
+          ELSE NULL
+        END) AS status
       FROM ${this.tableName}
       JOIN order_items ON order_id = orders.id
       JOIN menu_items ON menu_items.id = order_items.item_id
-      ${options.where ? 'WHERE ' + options.where : ''}
+      ${where ? 'WHERE ' + where : ''}
       GROUP BY orders.id, orders.name, orders.phone, orders.email, ordered_at
+      ${having ? 'HAVING ' + having : ''};
       ORDER BY orders.ordered_at ASC
-      ${options.limit ? 'LIMIT ' + options.limit : ''};
+      ${limit ? 'LIMIT ' + limit : ''};
     `;
   }
 
@@ -69,19 +76,19 @@ class OrdersTable {
   }
 
   /**
-   * Retrieves any recent orders.
+   * Retrieves any pending orders.
    */
-  getRecent() {
-    const queryString = this._buildSelectQuery({ where: 'orders.confirmed_at IS NULL' });
+  getPending() {
+    const queryString = this._buildSelectQuery({ having: "status = 'ordered'" });
     return this.db
       .query(queryString);
   }
 
   /**
-   * Retrieves any pending orders.
+   * Retrieves any confirmed orders.
    */
-  getPending() {
-    const queryString = this._buildSelectQuery({ where: 'orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL' });
+  getConfirmed() {
+    const queryString = this._buildSelectQuery({ having: "status = 'confirmed'" });
     return this.db
       .query(queryString);
   }
@@ -105,7 +112,7 @@ class OrdersTable {
    * Retrieves any ready orders.
    */
   getReady() {
-    const queryString = this._buildSelectQuery({ where: 'orders.ready_at IS NOT NULL AND orders.completed_at IS NULL' });
+    const queryString = this._buildSelectQuery({ having: "status = 'ready'" });
     return this.db
       .query(queryString);
   }
@@ -128,7 +135,7 @@ class OrdersTable {
    * Retrieves all completed orders.
    */
   getCompleted() {
-    const queryString = this._buildSelectQuery({ where: 'orders.completed_at IS NOT NULL' });
+    const queryString = this._buildSelectQuery({ having: "status = 'completed'" });
     return this.db
       .query(queryString);
   }

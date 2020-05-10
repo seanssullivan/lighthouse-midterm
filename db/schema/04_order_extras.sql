@@ -9,7 +9,9 @@ CREATE TABLE extras (
 );
 
 CREATE TABLE order_extras (
-  id SERIAL PRIMARY KEY NOT NULL,
-  order_item_id INTEGER REFERENCES order_items(id),
-  extra_id INTEGER REFERENCES extras(id)
+  order_id INTEGER REFERENCES orders(id),
+  item_id INTEGER REFERENCES menu_items(id),
+  extra_id INTEGER REFERENCES extras(id),
+  quantity INTEGER DEFAULT 1,
+  PRIMARY KEY (order_id, item_id, extra_id)
 );
