@@ -8,11 +8,11 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res, next) => {
 
-    /**
-     * Retrieves all menu items.
-     */
+  /**
+   * Retrieves all menu items.
+   */
+  router.get("/", (req, res, next) => {
     db.menuItems.all()
       .then(data => {
         res.json({
@@ -27,19 +27,9 @@ module.exports = (db) => {
   });
 
   /**
-   * Adds a menu item.
-   */
-  router.post("/", (req, res, next) => {
-    res.status(200).json({
-      message: 'Maybe one day this will be done but not today'
-    })
-  })
-
-  /**
    * Retrieves a menu item by its primary key.
    */
   router.get("/:id", (req, res, next) => {
-
     db.menuItems.get(req.params.id)
       .then(data => {
         res.json({
@@ -49,6 +39,57 @@ module.exports = (db) => {
       })
       .catch(err => {
         res.status(500).json({ error: err.message })
+      })
+  })
+
+  /**
+   * Retrieve a user's review of an item.
+   */
+  router.get("/:id/review", (req, res, next) => {
+    const visitorId = req.session.user_id;
+    const itemId = req.params.id;
+    db.itemReviews.get(visitorId, itemId)
+      .then(data => {
+        res.json({
+          status: 'success',
+          results: data.length,
+          data: data
+        })
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message })
+      })
+  });
+
+  /**
+   * Add a review.
+   */
+  router.post("/:id/review", (req, res, next) => {
+    const visitorId = req.session.user_id;
+    const itemId = req.params.id;
+    const rating = req.body;
+    db.itemReviews.add(visitorId, itemId, rating)
+      .then(data => {
+        res.status(201).json({
+          status: 'success',
+          data: data
+        })
+      })
+  })
+
+  /**
+   * Update a review.
+   */
+  router.put("/:id/review", (req, res, next) => {
+    const visitorId = req.session.user_id;
+    const itemId = req.params.id;
+    const rating = req.body;
+    db.itemReviews.update(visitorId, itemId, rating)
+      .then(data => {
+        res.status(204).json({
+          status: 'success',
+          data: data
+        })
       })
   })
   

@@ -20,7 +20,9 @@ class MenuItemsTable {
         FROM item_reviews
         WHERE item_reviews.id = menu_items.id
       ) AS average_rating
+      ${select ? ', ' + select : ''}
       FROM menu_items
+      ${join ? 'JOIN ' + join : ''}
       ${where ? 'WHERE ' + where : ''}
       ${limit ? 'LIMIT ' + where : ''};
     `;
@@ -28,11 +30,17 @@ class MenuItemsTable {
 
   /**
    * Retrieve all menu items.
+   * @param {String} visitorId
    */
-  all() {
-    const queryString = this._buildQuery();
+  all(visitorId = null) {
+    const options = {
+      select: 'item_reviews.rating AS user_rating',
+      join: 'item_reviews ON item_reviews.item_id = menu_items.id',
+      where: 'item_reviews.visitor_id = $1'
+    }
+    const queryString = this._buildQuery(options);
     return this.db
-      .query(queryString);
+      .query(queryString, [ visitorId ]);
   }
 
   /**

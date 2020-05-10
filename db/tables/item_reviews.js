@@ -12,47 +12,51 @@ class ItemReviewsTable {
   /**
    * Inserts an item review.
    * @param {String} visitorId 
-   * @param {Object} review 
+   * @param {Number} itemId 
+   * @param {Number} rating 
    */
-  add(visitorId, review) {
+  add(visitorId, itemId, rating) {
     const queryString = `
       INSERT INTO item_reviews (visitor_id, item_id, rating)
       VALUES ($1, $2, $3)
       RETURN *;
     `;
-    const values = [ visitorId, review.itemId, review.rating ];
+    const values = [ visitorId, itemId, rating ];
     return this.db
       .query(queryString, values);
   }
 
   /**
-   * Retrieve all item reviews for by the visitor id.
+   * Retrieve a review for an item by the visitor id.
    * @param {String} visitorId - The visitor's unique id.
+   * @param {Number} itemId - The foreign key for the item.
    */
-  get(visitorId) {
+  get(visitorId, itemId) {
     const queryString = `
       SELECT id, item_id, rating
       FROM item_reviews
       WHERE visitor_id = $1
+        AND item_id = $2
       RETURN *;
     `;
     return this.db
-      .query(queryString, [visitorId]);
+      .query(queryString, [ visitorId, itemId ]);
   }
 
   /**
    * Update a visitor's item review.
    * @param {String} visitorId 
-   * @param {Object} review 
+   * @param {Number} itemId
+   * @param {Number} review 
    */
-  update(visitorId, review) {
+  update(visitorId, itemId, rating) {
     const queryString = `
       UPDATE item_reviews
       SET rating = $1
       WHERE visitor_id = $2 AND item_id = $3
       RETURN *;
     `;
-    const values = [ review.rating, visitorId, review.itemId ];
+    const values = [ rating, visitorId, itemId ];
     return this.db
       .query(queryString, values);
   }
