@@ -7,7 +7,6 @@ class OrdersTable {
 
   constructor(database) {
     this.db = database;
-    this.tableName = 'orders';
   }
 
   /**
@@ -29,7 +28,7 @@ class OrdersTable {
           WHEN orders.ordered_at IS NOT NULL THEN 'ordered'
           ELSE NULL
         END) AS status
-      FROM ${this.tableName}
+      FROM orders
       JOIN order_items ON order_id = orders.id
       JOIN menu_items ON menu_items.id = order_items.item_id
       ${where ? 'WHERE ' + where : ''}
@@ -67,12 +66,12 @@ class OrdersTable {
 
   /**
    * Retrieve an order by its primary key.
-   * @param {Number} id 
+   * @param {Number} orderId 
    */
-  get(id) {
+  get(orderId) {
     const queryString = this._buildSelectQuery({ where: 'orders.id = $1'});
     return this.db
-      .query(queryString, [id]);
+      .query(queryString, [orderId]);
   }
 
   /**
@@ -96,7 +95,6 @@ class OrdersTable {
    /**
    * Confirm receipt of a new order.
    * @param {Number} orderId 
-   * @param {Object} orderItems
    */
   markConfirmed(orderId) {
     const queryString = `

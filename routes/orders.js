@@ -28,11 +28,11 @@ module.exports = (db) => {
   });
 
   /**
-   * Retrieves all recent orders.
+   * Retrieves all pending orders.
    */
-  router.get("/recent", (req, res, next) => {
+  router.get("/pending", (req, res, next) => {
 
-    db.orders.getRecent()
+    db.orders.getPending()
       .then(data => {
         res.json({
           status: 'success',
@@ -48,9 +48,9 @@ module.exports = (db) => {
   /**
    * Retrieves all pending orders.
    */
-  router.get("/pending", (req, res, next) => {
+  router.get("/confirmed", (req, res, next) => {
 
-    db.orders.getPending()
+    db.orders.getConfirmed()
       .then(data => {
         res.json({
           status: 'success',
