@@ -30,8 +30,6 @@ const db = require('./db');
 // ?? Routes
 const menuRoutes = require("./routes/menu");
 const ordersRoutes = require("./routes/orders");
-const reviewRoutes = require("./routes/reviews");
-const widgetsRoutes = require("./routes/widgets");
 
 // ?? Middleware
 const morgan = require('./middleware/morganCustom');
@@ -115,8 +113,6 @@ app.use((req, res, next) => {
 // ?????????????????????????? Routes ??????????????????????????????
 app.use("/api/menu", menuRoutes(db));
 app.use("/api/orders", ordersRoutes(db));
-app.use("/api/reviews", reviewRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 
 // ~~ Landing Page
 app.get("/", (req, res, next) => {
@@ -134,13 +130,19 @@ app.get("/menu", async (req, res, next) => {
 })
 
 app.get("/menu/:id", async (req, res, next) => {
-  const menuItem = await db.menuItems.get(req.params.id)
-  console.log(menuItem)
-  res.render("itemInfo", {
-    data: {
-      menu: menuItem[0]
-    }
-  })
+  try {
+    const menuItem = await db.menuItems.get(req.params.id);
+    const extras = await db.extras.get();
+    console.log(extras)
+    res.render("itemInfo", {
+      data: {
+        menu: menuItem[0]
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
 })
 
 app.get("/order", (req, res, next) => {

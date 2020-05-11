@@ -7,35 +7,40 @@ class MenuItemsTable {
 
   constructor(database) {
     this.db = database;
-    this.tableName = 'menu_items';
   }
 
   /**
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildQuery(options) {
-    if (!options) options = { where: '' };
-
+  _buildQuery({ where = '', limit = '' }) {
     return `
       SELECT menu_items.id, name, description, cost, image_url, sold_out, (
         SELECT ROUND(AVG(rating))
         FROM item_reviews
         WHERE item_reviews.id = menu_items.id
       ) AS average_rating
-      FROM ${this.tableName}
-      ${options.where ? 'WHERE ' + options.where : ''}
-      ${options.limit ? 'LIMIT ' + options.where : ''};
+      ${select ? ', ' + select : ''}
+      FROM menu_items
+      ${join ? 'JOIN ' + join : ''}
+      ${where ? 'WHERE ' + where : ''}
+      ${limit ? 'LIMIT ' + where : ''};
     `;
   }
 
   /**
    * Retrieve all menu items.
+   * @param {String} visitorId
    */
-  all() {
-    const queryString = this._buildQuery();
+  all(visitorId = null) {
+    const options = {
+      select: 'item_reviews.rating AS user_rating',
+      join: 'item_reviews ON item_reviews.item_id = menu_items.id',
+      where: 'item_reviews.visitor_id = $1'
+    }
+    const queryString = this._buildQuery(options);
     return this.db
-      .query(queryString);
+      .query(queryString, [ visitorId ]);
   }
 
   /**

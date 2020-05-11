@@ -6,6 +6,7 @@ require('dotenv').config();
 const { Pool } = require("pg");
 
 const MenuItemsTable = require('./tables/menu_items');
+const ExtrasTable = require('./tables/extras');
 const OrdersTable = require('./tables/orders');
 const OrderItemsTable = require('./tables/order_items');
 const ItemReviewsTable = require('./tables/item_reviews');
@@ -23,6 +24,7 @@ class DatabaseConnection {
 
     // Connected database tables
     this.menuItems = new MenuItemsTable(this);
+    this.extras = new ExtrasTable(this);
     this.orders = new OrdersTable(this);
     this.orderItems = new OrderItemsTable(this);
     this.itemReviews = new ItemReviewsTable(this);
