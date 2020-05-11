@@ -184,7 +184,7 @@ module.exports = (db) => {
   })
 
   /**
-   * Retrieves all order items for an order.
+   * Retrieves all items for an order.
    */
   router.get("/:id/items", (req, res, next) => {
     

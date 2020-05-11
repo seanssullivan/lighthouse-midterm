@@ -13,7 +13,7 @@ class MenuItemsTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildQuery({ where = '', limit = '' }) {
+  _buildQuery({ select = '', join = '', where = '', limit = '' }) {
     return `
       SELECT menu_items.id, name, description, cost, image_url, sold_out, (
         SELECT ROUND(AVG(rating))
