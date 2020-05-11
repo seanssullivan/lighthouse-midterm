@@ -29,6 +29,20 @@
     }
   }
 
+  &__add {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    &--price {
+      width: 54%;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  }
+
   &__extras {
     font-size: 1.3rem;
   }

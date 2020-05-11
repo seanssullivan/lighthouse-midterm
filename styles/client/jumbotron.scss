@@ -6,7 +6,6 @@
   padding-top: 10vh;
 
   &__img {
-    background-color: plum;
 
     img {
       width: 100%;
@@ -50,13 +49,28 @@
       grid-row-start: 3;
       grid-row-end: 4;
       padding-top: 0;
-      grid-template-rows: 100px 40px 40px;
+      grid-template-rows: 2.5rem 3rem 40px;
       row-gap: 60px;
 
       &--title {
         font-size: 2.5rem;
       }
+
+      &--text {
+        font-size: 1.5rem;
+      }
     
+    }
+  }
+
+  @include screenBP(tab-port) {
+
+
+    &__block {
+
+      &--title {
+        font-size: 2rem;
+      }
     }
   }
 }

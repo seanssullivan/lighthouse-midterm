@@ -48,7 +48,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.button__primary--invert {
+.button__primaryInvert {
   bottom: 10px;
     width: 120px;
     font-size: 30px;
@@ -60,8 +60,25 @@
     text-align: center;
 }
 
-.button__primary--invert:hover {
+.button__primaryInvert--small {
+  width: 80px;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  background-color: transparent;
+  color: $primary__color;
+  border: 2px solid $primary__color;
+  border-radius: 25px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer
+}
+
+.button__primaryInvert:hover,
+.button__primaryInvert--small:hover {
   transform: translateY(-5px);
+  background-color: $primary__color;
+  color: $secondary__color;
   transition: all 0.3s ease-in-out;
   @include button__shadow;
 }

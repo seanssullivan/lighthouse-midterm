@@ -133,8 +133,14 @@ app.get("/menu", async (req, res, next) => {
   })
 })
 
-app.get("/menu/:id", (req, res, next) => {
-  res.render("itemInfo")
+app.get("/menu/:id", async (req, res, next) => {
+  const menuItem = await db.menuItems.get(req.params.id)
+  console.log(menuItem)
+  res.render("itemInfo", {
+    data: {
+      menu: menuItem[0]
+    }
+  })
 })
 
 app.get("/order", (req, res, next) => {

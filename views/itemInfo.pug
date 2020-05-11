@@ -5,8 +5,13 @@ block content
     .itemInfo__img
       img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
     .itemInfo__text
-      h3.itemInfo__text--title STACKED OVERFLOWED
-      p.itemInfo__text--desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      h3.itemInfo__text--title= data.menu.name
+      p.itemInfo__text--desc= data.menu.description
+      .itemInfo__add
+        .itemInfo__add--price
+          span Price
+          span= data.menu.cost
+        .button__primaryInvert--small ADD
       h4.itemInfo__text--subtitle EXTRAS
       ul.itemInfo__extras
         li.itemInfo__topping
