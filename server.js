@@ -120,17 +120,35 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/menu", async (req, res, next) => {
-  const menuItems = await db.menuItems.all();
-
-  res.render("menu", {
-    data: {
-      menu: menuItems
-    }
-  })
+  try {
+    const menuItems = await db.menuItems.all();
+    console.log(menuItems)
+    res.render("menu", {
+      data: {
+        menu: menuItems
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
 })
 
-app.get("/menu/:id", (req, res, next) => {
-  res.render("itemInfo")
+app.get("/menu/:id", async (req, res, next) => {
+  try {
+    const menuItem = await db.menuItems.get(req.params.id);
+    const extras = await db.extras.get();
+    
+    res.render("itemInfo", {
+      data: {
+        menu: menuItem[0],
+        extras
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
 })
 
 app.get("/order", (req, res, next) => {

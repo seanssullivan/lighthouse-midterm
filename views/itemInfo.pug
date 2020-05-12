@@ -5,33 +5,21 @@ block content
     .itemInfo__img
       img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
     .itemInfo__text
-      h3.itemInfo__text--title STACKED OVERFLOWED
-      p.itemInfo__text--desc Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      h3.itemInfo__text--title= data.menu.name
+      p.itemInfo__text--desc= data.menu.description
+      .itemInfo__add
+        .itemInfo__add--price
+          span Price
+          span= data.menu.cost
+        .button__primaryInvert--small ADD
       h4.itemInfo__text--subtitle EXTRAS
       ul.itemInfo__extras
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
+        for extra in data.extras
+          li.itemInfo__topping
+            span.itemInfo__topping--name= extra.name
+            span.itemInfo__topping--add
+              <i class="fas fa-plus"></i>
+            span.itemInfo__topping--minus
+              <i class="fas fa-minus"></i>
     .itemInfo__checkout
       include components/client/checkout

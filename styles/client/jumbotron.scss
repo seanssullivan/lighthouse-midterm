@@ -1,7 +1,7 @@
 .jumbotron {
   display: grid;
   grid-template-columns: 2fr 1fr 3fr;
-  grid-template-rows: calc(60vh);
+  grid-template-rows: 80vh;
   align-items: center;
   padding-top: 10vh;
 
@@ -15,7 +15,6 @@
   &__block {
     grid-column-start: 3;
     grid-column-end: 4;
-    justify-content: center;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
@@ -26,11 +25,52 @@
     }
 
     &--text {
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
 
     &--button {
 
+    }
+  }
+
+  @include screenBP(tab-land) {
+    grid-template-columns: 1fr 60% 1fr;
+    grid-template-rows: 30vh 5vh 3fr;
+    padding-top: calc(100vh / 4);
+
+    &__img {
+      grid-column-start: 1;
+      grid-column-end: 4;
+    }
+    
+    &__block {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 3;
+      grid-row-end: 4;
+      padding-top: 0;
+      grid-template-rows: 2.5rem 3rem 40px;
+      row-gap: 60px;
+
+      &--title {
+        font-size: 2.5rem;
+      }
+
+      &--text {
+        font-size: 1.5rem;
+      }
+    
+    }
+  }
+
+  @include screenBP(tab-port) {
+
+
+    &__block {
+
+      &--title {
+        font-size: 2rem;
+      }
     }
   }
 }

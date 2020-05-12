@@ -1,13 +1,19 @@
 .menu {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-column-gap: 4rem;
-  padding-top: calc((100vh - 600px) / 2);
+  grid-template-columns: 3fr 350px;
+  grid-column-gap: 2rem;
+  padding-top: 200px;
   position: relative;
 
   &__items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem 4rem;
+  }
+}
+
+@include screenDPI(high) {
+  &__items {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
