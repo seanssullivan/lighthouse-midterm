@@ -13,7 +13,7 @@ class MenuItemsTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildQuery({ where = '' }) {
+  _buildQuery(where = '') {
     return `
       SELECT menu_items.id, name, description, cost, image_url, sold_out, (
         SELECT ROUND(AVG(rating))
@@ -45,7 +45,7 @@ class MenuItemsTable {
    * @param {Number} id 
    */
   get(id) {
-    const queryString = this._buildQuery({ where: 'menu_items.id = $1' });
+    const queryString = this._buildQuery(where = 'menu_items.id = $1');
     return this.db
       .query(queryString, [id]);
   }
