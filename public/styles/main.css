@@ -161,10 +161,9 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem 4rem; }
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  __items {
-    grid-template-columns: repeat(2, 1fr); } }
+  @media (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
+    .menu__items {
+      grid-template-columns: repeat(2, 1fr); } }
 
 .checkout {
   background-color: #549BBa;

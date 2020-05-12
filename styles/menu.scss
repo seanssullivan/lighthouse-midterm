@@ -10,10 +10,11 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 4rem 4rem;
   }
-}
 
-@include screenDPI(high) {
-  &__items {
-    grid-template-columns: repeat(2, 1fr);
+  @include screenDPI(high) {
+    &__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
+
