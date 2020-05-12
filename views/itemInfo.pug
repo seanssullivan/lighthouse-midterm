@@ -14,29 +14,12 @@ block content
         .button__primaryInvert--small ADD
       h4.itemInfo__text--subtitle EXTRAS
       ul.itemInfo__extras
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
-        li.itemInfo__topping
-          span.itemInfo__topping--name TOPPING
-          span.itemInfo__topping--add
-            <i class="fas fa-plus"></i>
-          span.itemInfo__topping--minus
-            <i class="fas fa-minus"></i>
+        for extra in data.extras
+          li.itemInfo__topping
+            span.itemInfo__topping--name= extra.name
+            span.itemInfo__topping--add
+              <i class="fas fa-plus"></i>
+            span.itemInfo__topping--minus
+              <i class="fas fa-minus"></i>
     .itemInfo__checkout
       include components/client/checkout
