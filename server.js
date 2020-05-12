@@ -163,9 +163,14 @@ app.get("/thankyou", (req, res, next) => {
 })
 
 app.get("/admin", async (req, res, next) => {
-  const ordersPending = await db.orders.getPending()
-  console.log(ordersPending)
-  res.render("admin")
+  try {
+    const ordersPending = await db.orders.getPending()
+    console.log(ordersPending)
+    res.render("admin")
+  } catch(err) {
+    console.log(err)
+  }
+  
 })
 
 // ~~ Catch all routes
