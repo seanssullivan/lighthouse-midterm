@@ -35,7 +35,7 @@ class MenuItemsTable {
    * @param {String} visitorId
    */
   all(visitorId = null) {
-    const queryString = this._buildQuery(options);
+    const queryString = this._buildQuery();
     return this.db
       .query(queryString, [ visitorId ]);
   }
