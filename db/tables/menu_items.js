@@ -42,12 +42,18 @@ class MenuItemsTable {
         SELECT ROUND(AVG(rating))
         FROM item_reviews
         WHERE item_reviews.id = menu_items.id
-      ) AS average_rating
+      ) AS average_rating, (
+        SELECT item_reviews.rating
+        FROM item_reviews
+        WHERE item_reviews.item_id = menu_items.id
+          AND item_reviews.visitor_id = $1
+      ) AS user_rating
       FROM menu_items
-      WHERE menu_items.id = $1;
+      WHERE menu_items.id = $2;
     `;
+
     return this.db
-      .query(queryString, [ itemId ]);
+      .query(queryString, [ visitorId, itemId ]);
   }
 
 }

@@ -136,7 +136,9 @@ app.get("/menu", async (req, res, next) => {
 
 app.get("/menu/:id", async (req, res, next) => {
   try {
-    const menuItem = await db.menuItems.get(req.params.id);
+    const visitorId = req.session.user_id;
+    const itemId = req.params.id;
+    const menuItem = await db.menuItems.get(visitorId, itemId);
     const extras = await db.extras.get();
     
     res.render("itemInfo", {
