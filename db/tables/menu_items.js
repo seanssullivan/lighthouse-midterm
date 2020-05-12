@@ -45,7 +45,7 @@ class MenuItemsTable {
    * @param {Number} id 
    */
   get(id) {
-    const queryString = this._buildQuery(where = 'menu_items.id = $1');
+    const queryString = this._buildQuery('menu_items.id = $1');
     return this.db
       .query(queryString, [id]);
   }
