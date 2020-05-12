@@ -33,7 +33,7 @@ class OrdersTable {
       JOIN menu_items ON menu_items.id = order_items.item_id
       ${where ? 'WHERE ' + where : ''}
       GROUP BY orders.id, orders.name, orders.phone, orders.email, ordered_at
-      ${having ? 'HAVING ' + having : ''};
+      ${having ? 'HAVING ' + having : ''}
       ORDER BY orders.ordered_at ASC
       ${limit ? 'LIMIT ' + limit : ''};
     `;
