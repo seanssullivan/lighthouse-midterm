@@ -13,8 +13,7 @@ class OrdersTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildSelectQuery(where = '', having = '', offset = 0,  limit = 0) {
-
+  _buildSelectQuery({ where, having, offset, limit }) {
     return `
       SELECT
         orders.id, orders.name, orders.phone, orders.email, orders.ordered_at,
