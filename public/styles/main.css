@@ -139,13 +139,17 @@ body {
 
 .admin {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: calc(100vh - 75px);
   column-gap: 30px;
   align-items: center;
   color: white;
   height: 100vh;
   padding-top: calc((100vh - (100vh - 75px)) / 2); }
+  .admin__completed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px; }
 
 .menu {
   display: grid;
@@ -523,72 +527,89 @@ body {
     .menuList__item--status {
       text-align: right; }
 
-.ordersList {
+.ordersList,
+.ordersCompleted {
   background-color: #549BBa;
   height: 70vh;
   font-size: 1rem;
   padding-left: 1rem;
   position: relative; }
-  .ordersList__title {
+  .ordersList__title,
+  .ordersCompleted__title {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 10px; }
-  .ordersList__list {
+  .ordersList__list,
+  .ordersCompleted__list {
     list-style: none;
     width: 90%;
     margin: 0 -10px;
     margin-top: 30px; }
-  .ordersList__item {
+  .ordersList__item,
+  .ordersCompleted__item {
     display: flex;
     justify-content: space-between;
     margin-right: -20px;
     padding-top: 30px; }
-  .ordersList__index {
+  .ordersList__index,
+  .ordersCompleted__index {
     position: absolute;
     bottom: 30px; }
-    .ordersList__index--prev {
+    .ordersList__index--prev,
+    .ordersCompleted__index--prev {
       position: absolute;
       left: 30px; }
-    .ordersList__index--text {
+    .ordersList__index--text,
+    .ordersCompleted__index--text {
       position: absolute;
       left: 120px; }
-    .ordersList__index--page {
+    .ordersList__index--page,
+    .ordersCompleted__index--page {
       position: absolute;
       left: 300px; }
-    .ordersList__index--next {
+    .ordersList__index--next,
+    .ordersCompleted__index--next {
       position: absolute;
       left: 420px; }
 
-.orderInfo {
+.orderInfo,
+.orderInfoCompleted {
   background-color: #549BBa;
   height: 70vh;
   font-size: 1rem;
   position: relative; }
-  .orderInfo__title {
+  .orderInfo__title,
+  .orderInfoCompleted__title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 10px; }
-  .orderInfo__list {
+  .orderInfo__list,
+  .orderInfoCompleted__list {
     list-style: none; }
-  .orderInfo__item {
+  .orderInfo__item,
+  .orderInfoCompleted__item {
     display: flex;
     justify-content: space-between;
     width: 90%;
     margin-left: 0;
     margin-right: 0;
     margin-top: 30px; }
-    .orderInfo__item--extras {
+    .orderInfo__item--extras,
+    .orderInfoCompleted__item--extras {
       text-align: right;
       list-style-position: outside;
       list-style: disc; }
-      .orderInfo__item--extras li:not(:first-child) {
+      .orderInfo__item--extras li:not(:first-child),
+      .orderInfoCompleted__item--extras li:not(:first-child) {
         margin-top: 10px; }
-  .orderInfo__timeline {
+  .orderInfo__timeline,
+  .orderInfoCompleted__timeline {
     position: absolute;
     bottom: 100px;
     width: 100%;
     left: -20px; }
-  .orderInfo__button {
+  .orderInfo__button,
+  .orderInfoCompleted__button {
     position: absolute;
     bottom: 25px;
     right: 5%; }
@@ -633,4 +654,46 @@ body {
   .timeline__step--active:before {
     border-color: green; }
   .timeline__step--active:after {
+    background-color: green; }
+
+.timelineCompleted {
+  width: 100%; }
+  .timelineCompleted__bar {
+    counter-reset: step; }
+  .timelineCompleted__step {
+    list-style-type: none;
+    float: left;
+    width: 25%;
+    position: relative;
+    z-index: 10;
+    text-align: center; }
+  .timelineCompleted__step:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid white;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+    color: black; }
+  .timelineCompleted__step:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    top: 15px;
+    left: 50%;
+    z-index: -1; }
+  .timelineCompleted__step:last-child:after {
+    content: none; }
+  .timelineCompleted__step--active {
+    color: green; }
+  .timelineCompleted__step--active:before {
+    border-color: green; }
+  .timelineCompleted__step--active:after {
     background-color: green; }

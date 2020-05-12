@@ -1,10 +1,16 @@
 .admin {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: calc(100vh - 75px);
   column-gap: 30px;
   align-items: center;
   color: white;
   height: 100vh;
   padding-top: calc((100vh - (100vh - 75px)) / 2);
+
+  &__completed {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+  }
 }

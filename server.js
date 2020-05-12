@@ -163,7 +163,7 @@ app.get("/thankyou", (req, res, next) => {
 
 app.get("/admin/pending", async (req, res, next) => {
   try {
-    const ordersPending = await db.orders.getPending(1, 10)
+    const ordersPending = await db.orders.getPending({offset: 1, limit: 10})
     console.log(ordersPending)
     res.render("admin")
   } catch(err) {
@@ -175,8 +175,20 @@ app.get("/admin/pending", async (req, res, next) => {
 
 app.get("/admin/completed", async (req, res, next) => {
   try {
-    const ordersComplete = await db.orders.getCompleted({offset: 10, limit: 10})
-    console.log(ordersComplete)
+    const visitorId = req.session.user_id;
+    const ordersComplete = await db.orders.getCompleted({offset: 0, limit: 10})
+    const orderComplete = ordersComplete[0];
+    const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
+    
+    console.log(menuItem)
+    res.render("admin", {
+      data: {
+        orders: ordersComplete,
+        order: orderComplete,
+        menu: menuItem,
+        show: 'completed'
+      }
+    })
   } catch(err) {
     console.log(err)
   }

@@ -2,10 +2,20 @@ extends base
 
 block content
   .admin
-    include components/admin/adminNav
-    //- Orders
-    include components/admin/ordersList
-    include components/admin/orderInfo
+    .admin__nav
+      include components/admin/adminNav
+    
+    if data.show == 'completed'
+      .admin__completed
+        include components/admin/ordersCompleted
+        include components/admin/orderInfoCompleted
+    else
+      .admin__pending
+        //- Orders
+        include components/admin/ordersList
+        include components/admin/orderInfo
+
+    
 
     //- Menu
     //- include components/admin/menuList

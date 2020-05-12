@@ -1,0 +1,21 @@
+.ordersCompleted
+  h3.ordersCompleted__title ORDERS
+  .underline
+  ul.ordersCompleted__list
+    li.ordersCompleted__item
+      span.ordersCompleted__item--id ID
+      span.ordersCompleted__item--timeStart TIME AGO
+      span.ordersCompleted__item--flag FLAG
+      span.ordersCompleted__item--timeFinish TIME TO
+    for order in data.orders
+      li.ordersCompleted__item
+        span.ordersCompleted__item--id= order.id
+        span.ordersCompleted__item--timeStart= order.ordered_at
+        span.ordersCompleted__item--flag 
+        span.ordersCompleted__item--timeFinish
+    
+  .ordersCompleted__index
+    i(class="ordersCompleted__index--prev fas fa-arrow-left")
+    span.ordersCompleted__index--text PAGE
+    span.ordersCompleted__index--page 1/25
+    i(class="ordersCompleted__index--next fas fa-arrow-right")

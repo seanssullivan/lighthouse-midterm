@@ -56,3 +56,62 @@
     background-color: green;
   }
 }
+
+.timelineCompleted {
+  width: 100%;
+
+  &__bar {
+    counter-reset: step;
+  }
+
+  &__step {
+    list-style-type: none;
+    float: left;
+    width: 25%;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+  }
+
+  &__step:before {
+    content: counter(step);
+    counter-increment: step;
+    width:30px;
+    height: 30px;
+    line-height: 30px;
+    border: 2px solid white;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+  }
+
+  &__step:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    top: 15px;
+    left: 50%;
+    z-index: -1;
+  }
+
+  &__step:last-child:after {
+    content: none;
+  }
+
+  &__step--active {
+    color: green;
+  }
+
+  &__step--active:before {
+    border-color: green;
+  }
+
+  &__step--active:after {
+    background-color: green;
+  }
+}
