@@ -32,7 +32,7 @@ module.exports = (db) => {
    */
   router.get("/pending", (req, res, next) => {
 
-    db.orders.getPending()
+    db.orders.getPending({ offset: 0, limit: 10 })
       .then(data => {
         res.json({
           status: 'success',
@@ -50,7 +50,7 @@ module.exports = (db) => {
    */
   router.get("/confirmed", (req, res, next) => {
 
-    db.orders.getConfirmed()
+    db.orders.getConfirmed({ offset: 0, limit: 10 })
       .then(data => {
         res.json({
           status: 'success',
@@ -68,7 +68,7 @@ module.exports = (db) => {
    */
   router.get("/ready", (req, res, next) => {
 
-    db.orders.getReady()
+    db.orders.getReady({ offset: 0, limit: 10 })
       .then(data => {
         res.status(200).json({
           status: 'success',
@@ -86,7 +86,7 @@ module.exports = (db) => {
    */
   router.get("/completed", (req, res, next) => {
 
-    db.orders.getCompleted()
+    db.orders.getCompleted({ offset: 0, limit: 10 })
       .then(data => {
         res.status(200).json({
           status: 'success',
