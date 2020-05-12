@@ -42,12 +42,13 @@ class MenuItemsTable {
 
   /**
    * Retrieve a menu item by its id.
-   * @param {Number} id 
+   * @param {String} visitorId
+   * @param {Number} itemId 
    */
-  get(id) {
-    const queryString = this._buildQuery('menu_items.id = $1');
+  get(visitorId, itemId) {
+    const queryString = this._buildQuery('menu_items.id = $2');
     return this.db
-      .query(queryString, [id]);
+      .query(queryString, [ visitorId, itemId ]);
   }
 
 }

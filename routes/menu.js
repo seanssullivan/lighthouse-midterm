@@ -31,7 +31,9 @@ module.exports = (db) => {
    * Retrieves a menu item by its primary key.
    */
   router.get("/:id", (req, res, next) => {
-    db.menuItems.get(req.params.id)
+    const visitorId = req.session.user_id;
+    const itemId = req.params.id;
+    db.menuItems.get(visitorId, itemId)
       .then(data => {
         res.json({
           status: 'success',
