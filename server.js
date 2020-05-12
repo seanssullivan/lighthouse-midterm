@@ -122,7 +122,7 @@ app.get("/", (req, res, next) => {
 app.get("/menu", async (req, res, next) => {
   try {
     const menuItems = await db.menuItems.all();
-    console.log(menuItems)
+    
     res.render("menu", {
       data: {
         menu: menuItems
@@ -138,13 +138,14 @@ app.get("/menu/:id", async (req, res, next) => {
   try {
     const menuItem = await db.menuItems.get(req.params.id);
     const extras = await db.extras.get();
-    
-    res.render("itemInfo", {
-      data: {
-        menu: menuItem[0],
-        extras
-      }
-    })
+    console.log(menuItem)
+    console.log(extras)
+    // res.render("itemInfo", {
+    //   data: {
+    //     menu: menuItem[0],
+    //     extras
+    //   }
+    // })
   } catch(err) {
     console.log(err)
   }
@@ -159,7 +160,9 @@ app.get("/thankyou", (req, res, next) => {
   res.render("thankyou")
 })
 
-app.get("/admin", (req, res, next) => {
+app.get("/admin", async (req, res, next) => {
+  const ordersPending = await db.orders.getPending()
+  console.log(ordersPending)
   res.render("admin")
 })
 
