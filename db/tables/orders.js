@@ -13,7 +13,7 @@ class OrdersTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildSelectQuery({ where = '', having = '', limit = '' }) {
+  _buildSelectQuery({ where = '', having = '', offset = 0,  limit = 0 }) {
 
     return `
       SELECT
@@ -27,7 +27,7 @@ class OrdersTable {
           WHEN orders.confirmed_at IS NOT NULL THEN 'confirmed'
           WHEN orders.ordered_at IS NOT NULL THEN 'ordered'
           ELSE NULL
-        END) AS status
+        END) AS "status"
       FROM orders
       JOIN order_items ON order_id = orders.id
       JOIN menu_items ON menu_items.id = order_items.item_id
@@ -35,7 +35,7 @@ class OrdersTable {
       GROUP BY orders.id, orders.name, orders.phone, orders.email, ordered_at
       ${having ? 'HAVING ' + having : ''}
       ORDER BY orders.ordered_at ASC
-      ${limit ? 'LIMIT ' + limit : ''};
+      ${limit ? 'LIMIT ' + limit : ''}${ limit && offset ? 'OFFSET ' + offset : ''};
     `;
   }
 
@@ -77,8 +77,8 @@ class OrdersTable {
   /**
    * Retrieves any pending orders.
    */
-  getPending() {
-    const queryString = this._buildSelectQuery({ having: "status = 'ordered'" });
+  getPending({ offset = 0, limit = 10}) {
+    const queryString = this._buildSelectQuery({ having: "status = 'ordered'", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -86,8 +86,8 @@ class OrdersTable {
   /**
    * Retrieves any confirmed orders.
    */
-  getConfirmed() {
-    const queryString = this._buildSelectQuery({ having: "status = 'confirmed'" });
+  getConfirmed({ offset = 0, limit = 10}) {
+    const queryString = this._buildSelectQuery({ having: "status = 'confirmed'", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -109,8 +109,8 @@ class OrdersTable {
   /**
    * Retrieves any ready orders.
    */
-  getReady() {
-    const queryString = this._buildSelectQuery({ having: "status = 'ready'" });
+  getReady({ offset = 0, limit = 10}) {
+    const queryString = this._buildSelectQuery({ having: "status = 'ready'", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -132,8 +132,8 @@ class OrdersTable {
   /**
    * Retrieves all completed orders.
    */
-  getCompleted() {
-    const queryString = this._buildSelectQuery({ having: "status = 'completed'" });
+  getCompleted({ offset = 0, limit = 10}) {
+    const queryString = this._buildSelectQuery({ having: "status = 'completed'", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
