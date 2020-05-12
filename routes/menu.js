@@ -13,7 +13,8 @@ module.exports = (db) => {
    * Retrieves all menu items.
    */
   router.get("/", (req, res, next) => {
-    db.menuItems.all()
+    const visitorId = req.session.user_id;
+    db.menuItems.all(visitorId)
       .then(data => {
         res.json({
           status: 'success',
