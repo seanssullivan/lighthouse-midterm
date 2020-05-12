@@ -26,7 +26,7 @@ class OrdersTable {
           WHEN orders.confirmed_at IS NOT NULL THEN 'confirmed'
           WHEN orders.ordered_at IS NOT NULL THEN 'ordered'
           ELSE NULL
-        END) AS "status"
+        END) AS status
       FROM orders
       JOIN order_items ON order_id = orders.id
       JOIN menu_items ON menu_items.id = order_items.item_id
@@ -77,7 +77,7 @@ class OrdersTable {
    * Retrieves any pending orders.
    */
   getPending({ offset, limit }) {
-    const queryString = this._buildSelectQuery({ where: '', having: "status = 'ordered'", offset: offset, limit: limit });
+    const queryString = this._buildSelectQuery({ where: '', having: "orders.ordered_at IS NOT NULL AND orders.confirmed_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -86,7 +86,7 @@ class OrdersTable {
    * Retrieves any confirmed orders.
    */
   getConfirmed({ offset, limit }) {
-    const queryString = this._buildSelectQuery({ where: '', having: "status = 'confirmed'", offset: offset, limit: limit });
+    const queryString = this._buildSelectQuery({ where: '', having: "orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -109,7 +109,7 @@ class OrdersTable {
    * Retrieves any ready orders.
    */
   getReady({ offset, limit }) {
-    const queryString = this._buildSelectQuery({ where: '', having: "status = 'ready'", offset: offset, limit: limit });
+    const queryString = this._buildSelectQuery({ where: '', having: "orders.ready_at IS NOT NULL AND orders.completed_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
@@ -132,7 +132,7 @@ class OrdersTable {
    * Retrieves all completed orders.
    */
   getCompleted({ offset, limit }) {
-    const queryString = this._buildSelectQuery({ where: '', having: "status = 'completed'", offset: offset, limit: limit });
+    const queryString = this._buildSelectQuery({ where: '', having: "orders.completed_at IS NOT NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString);
   }
