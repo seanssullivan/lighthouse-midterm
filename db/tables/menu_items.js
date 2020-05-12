@@ -13,18 +13,19 @@ class MenuItemsTable {
    * Constructs the SQL query.
    * @param {Object} options - Optional statements to include in the SQL query
    */
-  _buildQuery({ select = '', join = '', where = '', limit = '' }) {
+  _buildQuery({ limit = '' }) {
     return `
       SELECT menu_items.id, name, description, cost, image_url, sold_out, (
         SELECT ROUND(AVG(rating))
         FROM item_reviews
         WHERE item_reviews.id = menu_items.id
-      ) AS average_rating
-      ${select ? ', ' + select : ''}
+      ) AS average_rating, (
+        SELECT item_reviews.rating
+        FROM item_reviews
+        WHERE item_reviews.item_id = menu_items.id
+          AND item_reviews.visitor_id = $1
+      ) AS user_rating
       FROM menu_items
-      ${join ? 'JOIN ' + join : ''}
-      ${where ? 'WHERE ' + where : ''}
-      ${limit ? 'LIMIT ' + where : ''};
     `;
   }
 
@@ -33,11 +34,6 @@ class MenuItemsTable {
    * @param {String} visitorId
    */
   all(visitorId = null) {
-    const options = {
-      select: 'item_reviews.rating AS user_rating',
-      join: 'item_reviews ON item_reviews.item_id = menu_items.id',
-      where: 'item_reviews.visitor_id = $1'
-    }
     const queryString = this._buildQuery(options);
     return this.db
       .query(queryString, [ visitorId ]);
