@@ -1,7 +1,7 @@
 extends base
 
 block content
-  .itemInfo
+  <div class="itemInfo" id=#{data.menu.id}>
     .itemInfo__img
       img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
     .itemInfo__text
@@ -15,11 +15,13 @@ block content
       h4.itemInfo__text--subtitle EXTRAS
       ul.itemInfo__extras
         for extra in data.extras
-          li.itemInfo__topping
+          <li class="itemInfo__topping" id=#{extra.id}>
             span.itemInfo__topping--name= extra.name
             span.itemInfo__topping--add
               <i class="fas fa-plus"></i>
             span.itemInfo__topping--minus
               <i class="fas fa-minus"></i>
+          </li>
     .itemInfo__checkout
       include components/client/checkout
+  </div>

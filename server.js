@@ -140,14 +140,13 @@ app.get("/menu/:id", async (req, res, next) => {
     const itemId = req.params.id;
     const menuItem = await db.menuItems.get(visitorId, itemId);
     const extras = await db.extras.get();
-    console.log(menuItem)
-    console.log(extras)
-    // res.render("itemInfo", {
-    //   data: {
-    //     menu: menuItem[0],
-    //     extras
-    //   }
-    // })
+    
+    res.render("itemInfo", {
+      data: {
+        menu: menuItem[0],
+        extras
+      }
+    })
   } catch(err) {
     console.log(err)
   }
@@ -162,9 +161,9 @@ app.get("/thankyou", (req, res, next) => {
   res.render("thankyou")
 })
 
-app.get("/admin", async (req, res, next) => {
+app.get("/admin/pending", async (req, res, next) => {
   try {
-    const ordersPending = await db.orders.getPending()
+    const ordersPending = await db.orders.getPending(1, 10)
     console.log(ordersPending)
     res.render("admin")
   } catch(err) {
@@ -173,6 +172,16 @@ app.get("/admin", async (req, res, next) => {
   
 })
 
+
+app.get("/admin/completed", async (req, res, next) => {
+  try {
+    const ordersComplete = await db.orders.getCompleted({offset: 10, limit: 10})
+    console.log(ordersComplete)
+  } catch(err) {
+    console.log(err)
+  }
+  
+})
 // ~~ Catch all routes
 app.get("*", (req, res, next) => {
   res.status(404).send('sorry you got lost')
