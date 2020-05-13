@@ -2,7 +2,7 @@ extends base
 
 block content
   .checkoutInfo
-    .checkoutInfo__text
+    .checkoutInfo__text.hide
       h3.checkoutInfo__title Your Info
       .checkoutInfo__form
         .checkoutInfo__form--name
@@ -20,8 +20,9 @@ block content
       h3.checkoutInfo__pending--title Waiting for confirmation
       .checkoutInfo__animation
         img(src="/images/awaiting-confirmation.gif")
-    .checkoutInfo__confirmed.hide
+    .checkoutInfo__confirmed
       h3.checkoutInfo__confirmed--title Your Order Will Be Ready In
-      img(src="/images/order-confirmed.png")
+      .checkoutInfo__confirmed--image
+        img(src="/images/order-confirmed.png")
     .checkoutInfo__checkout
       include components/client/checkout_alt

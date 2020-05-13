@@ -260,6 +260,7 @@ $(document).ready(function() {
   }
 
   const submitPending = function(data) {
+    console.log('puppies')
     $('.checkoutInfo__text').addClass('hide')
     $('.checkoutInfo__pending').removeClass('hide')
 

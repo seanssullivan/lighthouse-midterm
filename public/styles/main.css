@@ -274,10 +274,16 @@ body {
   .checkoutInfo__submit {
     padding-top: 1rem;
     padding-left: 50px; }
+  .checkoutInfo__animation {
+    margin: 0 auto;
+    width: 300px; }
   .checkoutInfo__pending--title, .checkoutInfo__confirmed--title {
     font-size: 2rem;
     color: #549BBa;
     text-align: center; }
+  .checkoutInfo__confirmed--image {
+    width: 300px;
+    margin: 0 auto; }
 
 .jumbotron {
   display: grid;
