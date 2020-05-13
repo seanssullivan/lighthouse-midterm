@@ -2,6 +2,9 @@ extends base
 
 block content
   <div class="itemInfo" id=#{data.menu.id}>
+    .itemInfo__back
+      <i class="fas fa-arrow-left"></i>
+      span Go Back
     .itemInfo__img
       img(src=data.menu.image_url)
     .itemInfo__text

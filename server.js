@@ -191,18 +191,22 @@ app.get('/admin/confirmation/:id', (req, res, next) => {
 app.get("/admin/completed", async (req, res, next) => {
   try {
     const visitorId = req.session.user_id;
-    const ordersComplete = await db.orders.getCompleted({offset: 5, limit: 10})
-    const orderComplete = ordersComplete[0];
-    const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
+    const ordersComplete = await db.orders.getCompleted({offset: 0, limit: 10})
+    const onLoadOrder = ordersComplete[0].id;
+    const ordersInfo = {};
     
-    console.log(ordersComplete)
-    console.log(menuItem)
+    for (let i = 0; i < ordersComplete.length; i++) {
+      const temp = await db.orderItems.get(ordersComplete[i].id)
+      ordersInfo[ordersComplete[i].id] = temp
+    }
+    // console.log(ordersInfo[onLoadOrder])
     res.render("admin", {
       data: {
         orders: ordersComplete,
-        order: orderComplete,
-        menu: menuItem,
-        show: 'completed'
+        ordersItems: ordersInfo,
+        order: ordersInfo[onLoadOrder],
+        show: 'completed',
+        page: 1
       }
     })
   } catch(err) {
