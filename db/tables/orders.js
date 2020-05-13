@@ -71,7 +71,7 @@ class OrdersTable {
     const insertOrderQueryString = `
       INSERT INTO orders (name, phone, email)
       VALUES ($1, $2, $3)
-      RETURN id;
+      RETURNING id;
     `;
 
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
