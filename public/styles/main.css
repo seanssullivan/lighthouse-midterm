@@ -184,43 +184,29 @@ body {
       font-weight: 400;
       text-align: center; }
   .checkout__list {
-    padding-top: 2rem;
+    padding-top: 2rem; }
+  .checkout__topping {
+    padding-top: 1rem; }
+  .checkout__list, .checkout__toppings {
     width: 100%;
     margin: 0 auto; }
-    .checkout__list li {
+    .checkout__list li, .checkout__toppings li {
       width: 90%;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 1rem; }
-    .checkout__list--toggle {
-      margin-left: -13px;
-      font-size: 1.3rem; }
-    .checkout__list--item {
-      padding-left: 15px; }
-    .checkout__list--total {
-      text-align: end;
-      flex-grow: 2; }
-  .checkout__info {
-    padding-top: 5px;
-    width: 100%; }
-    .checkout__info--quantity {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 45% repeat(3, 1fr) 2fr;
-      column-gap: 10px;
-      padding-left: 15px; }
-    .checkout__info--quantityTotal {
-      text-align: end; }
-    .checkout__info--topping {
-      padding-top: 5px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 45% repeat(3, 1fr) 2fr;
-      column-gap: 10px;
-      padding-left: 15px; }
-    .checkout__info--toppingTotal {
-      text-align: end; }
+      position: relative;
+      padding-bottom: 1.5rem;
+      list-style: none; }
+    .checkout__list--delete, .checkout__toppings--delete {
+      position: absolute;
+      left: -20px; }
+    .checkout__list--name, .checkout__toppings--name {
+      position: absolute;
+      left: 10px; }
+    .checkout__list--quantity, .checkout__toppings--quantity {
+      position: absolute;
+      left: 200px; }
+    .checkout__list--total, .checkout__toppings--total {
+      position: absolute;
+      right: 0; }
   .checkout__total {
     position: absolute;
     bottom: 80px;

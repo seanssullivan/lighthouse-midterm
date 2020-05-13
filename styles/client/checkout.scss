@@ -21,61 +21,41 @@
       text-align: center;
     }
   }
-
   &__list {
     padding-top: 2rem;
+  }
+  &__topping {
+    padding-top: 1rem;
+  }
+  &__list,
+  &__toppings {
     width: 100%;
     margin: 0 auto;
     li {
       width: 90%;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 1.5rem;
+      list-style: none;
     }
 
-    &--toggle {
-      margin-left: -13px;
-      font-size: 1.3rem;
+    &--delete {
+      position: absolute;
+      left: -20px;
     }
 
-    &--item {
-      padding-left: 15px;
+    &--name {
+      position: absolute;
+      left: 10px;
+    }
+
+    &--quantity {
+      position: absolute;
+      left: 200px;
     }
 
     &--total {
-      text-align: end;
-      flex-grow: 2;
-    }
-  }
-
-  &__info {
-    padding-top: 5px;
-    width: 100%;
-
-    &--quantity {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 45% repeat(3, 1fr) 2fr;
-      column-gap: 10px;
-      padding-left: 15px;
-    }
-
-    &--quantityTotal {
-      text-align: end;
-    }
-
-    &--topping {
-      padding-top: 5px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 45% repeat(3, 1fr) 2fr;
-      column-gap: 10px;
-      padding-left: 15px;
-    }
-
-    &--toppingTotal {
-      text-align: end;
+      position: absolute;
+      right: 0;
     }
   }
 

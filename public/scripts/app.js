@@ -1,45 +1,28 @@
 $(document).ready(function() {
 
-  const checkoutListHtml = item => {
+  const checkoutListHtml = (id, item) => {
     return `
-      <li>
-        <span class="checkout__list--toggle"> 
-          <i class="fas fa-caret-down"></i>
+      <li id=${id}>
+        <span class="checkout__list--delete"> 
+          <i class="fas fa-times"></i>
         </span>
-        <span class="checkout__list--item">${item.name}</span>
+        <span class="checkout__list--name">${item.name}</span>
+        <span class="checkout__list--quantity">X${item.quantity}</span>
         <span class="checkout__list--total">${parseFloat(item.price * item.quantity).toFixed(2)}</span>
-        <div class="checkout__info">
-            <div class="checkout__info--quantity">
-              <span>QUANTITY</span>
-              <span>X${item.quantity}</span>
-              <span>
-                <i class="fas fa-plus"></i>
-              </span>
-              <span>
-                <i class="fas fa-minus"></i>
-              </span>
-              <span class="checkout__info--quantityTotal">${item.price}</span>
-            </div>
-            <div class="checkout__info--toppings">
-            </div>
-        </div>
       </li>
     `
   }
   
-  const renderExtraHtml = item => {
+  const renderExtraHtml = (id, item) => {
     return `
-    <div class="checkout__info--topping">
-      <span>${item.name}</span>
-        <span>X${item.quantity}</span>
-        <span>
-          <i class="fas fa-plus"></i>
+      <li id=${id}>
+        <span class="checkout__toppings--delete"> 
+          <i class="fas fa-times"></i>
         </span>
-      <span>
-        <i class="fas fa-minus"></i>
-      </span>
-      <span class="checkout__info--toppingTotal">${item.quantity * 0.99}</span>
-    </div> 
+        <span class="checkout__toppings--name">${item.name}</span>
+        <span class="checkout__toppings--quantity">X${item.quantity}</span>
+        <span class="checkout__toppings--total">${item.quantity * 0.99}</span>
+      </li> 
     `
   }
   
@@ -48,22 +31,25 @@ $(document).ready(function() {
     let order = JSON.parse(storedOrder)
     let list = '';
     let listExtras = ''
-    const { items } = order;
+    let total = 0;
+    const { extras, items } = order;
     
     for (id in items) {
-      list = list + checkoutListHtml(items[id])
-
-      if (items[id].extras) {
-        
-        for (extra in items[id].extras) {
-          // console.log(extra)
-          listExtras = listExtras + renderExtraHtml(items[id].extras[extra])
-        }
-      }
+      const sub = items[id].price * items[id].quantity
+      total = total + sub;
+      list = list + checkoutListHtml(id, items[id]) 
     }
+
+    for (extra in extras) {
+      const sub = 0.99 * extras[extra].quantity
+      total = total + sub;
+      listExtras = listExtras + renderExtraHtml(id, extras[extra])
+    }
+    total = total.toFixed(2)
     
     $('.checkout__list').empty().append(list)
-    $('.checkout__info--toppings').empty().append(listExtras)
+    $('.checkout__toppings').empty().append(listExtras)
+    $('.checkout__total--price').text(total)
   }
   
   const renderMenuItem = function(e) {
@@ -96,6 +82,14 @@ $(document).ready(function() {
           name: itemName
         }
       }
+    } else if (order.items === undefined) {
+      order.items = {
+        [parentId]: {
+          quantity: 0,
+          price: itemPrice,
+          name: itemName
+        }
+      }
     } else if (order.items[parentId] === undefined) {
       order.items[parentId] = {
         quantity: 0,
@@ -120,30 +114,25 @@ $(document).ready(function() {
   
   const addTopping = function() {
     const storedOrder = window.localStorage.getItem('order')
-    const parentId = $( this ).parent().parent().parent().parent().attr("id")
     const toppingId = $( this ).parent().attr("id")
     const toppingName = $( this ).parent().children().first().text();
     let order = JSON.parse(storedOrder)
-    
-    // console.log(order)
-    if (order === null || order.extras === null) {
+
+    if (order === null) {
       order = {}
       order.extras = {}
+    } else if (order.extras === undefined) {
+      order.extras = {}
     }
-  
-    if (order.items[parentId].extras[toppingId] === undefined) {
-      console.log(order.items[parentId].extras)
-      order.items[parentId].extras = {
-        [toppingId]: {
-          quantity: 1,
-          name: toppingName
-        }
+    
+    if (order.extras[toppingId] === undefined) {
+      order.extras[toppingId] = {
+        name: toppingName,
+        quantity: 1
       }
     } else {
-      console.log('2')
-      order.items[parentId].extras[toppingId].quantity++
+      order.extras[toppingId].quantity++
     }
-  
     window.localStorage.setItem('order', JSON.stringify(order))
     refreshCheckout()
   }
@@ -152,23 +141,13 @@ $(document).ready(function() {
     const storedOrder = window.localStorage.getItem('order')
     const parentId = $( this ).parent().parent().parent().parent().attr("id")
     const toppingId = $( this ).parent().attr("id")
-    let order;
-    if (storedOrder) {
-      order = JSON.parse(storedOrder)
-    } else {
-      // order = {}
-      // order.items = {
-      //   [id]: {
-      //     extras: {}
-      //   }
-      // }
-    }
+    let order = JSON.parse(storedOrder)
     
-    if (order.items[parentId].extras[toppingId] === 0) {
+    if (order.extras[toppingId].quantity === 0) {
       // order.item[parentId].extras[toppingId]--
       alert("cannot take away")
     } else {
-      order.items[parentId].extras[toppingId].quantity--
+      order.extras[toppingId].quantity--
     }
   
     window.localStorage.setItem('order', JSON.stringify(order))
