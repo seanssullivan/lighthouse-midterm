@@ -235,6 +235,10 @@ $(document).ready(function() {
     window.location.href = '/order'
   }
 
+  const goBack = function() {
+    window.location.href = '/menu'
+  }
+
   const setIntervalLoop = () => {
     const intervalId = setInterval(()=> {
       const orderId = 1;
@@ -313,6 +317,7 @@ $(document).ready(function() {
   $('.itemInfo__topping--add').click(addTopping)
   $('.itemInfo__topping--minus').click(removeTopping)
   $('.itemInfo__add').children().last().click(addItem)
+  $('.itemInfo__back').click(goBack)
   
   $('.menuItem__button--add').click(addItemMain)
   $('.menuItem__button--info').click(renderMenuItem);

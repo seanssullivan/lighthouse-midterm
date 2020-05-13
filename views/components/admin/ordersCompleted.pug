@@ -16,7 +16,7 @@
       <li class="ordersCompletedList__item">
         span.ordersCompletedList__item--id= order.id
         span.ordersCompletedList__item--timeStart= days[day] + ' ' + months[month] + ' ' + year
-        span.ordersCompletedList__item--price
+        span.ordersCompletedList__item--price= '$' + order.total_cost
       </li>
       - arrIndex++
   .ordersCompletedList__index

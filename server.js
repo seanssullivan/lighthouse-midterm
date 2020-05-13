@@ -190,21 +190,13 @@ app.get('/admin/confirmation/:id', (req, res, next) => {
 
 app.get("/admin/completed", async (req, res, next) => {
   try {
-    const visitorId = req.session.user_id;
     const ordersComplete = await db.orders.getCompleted({offset: 0, limit: 10})
-    const onLoadOrder = ordersComplete[0].id;
-    const ordersInfo = {};
+    const firstOrder = ordersComplete[0]
     
-    for (let i = 0; i < ordersComplete.length; i++) {
-      const temp = await db.orderItems.get(ordersComplete[i].id)
-      ordersInfo[ordersComplete[i].id] = temp
-    }
-    // console.log(ordersInfo[onLoadOrder])
     res.render("admin", {
       data: {
         orders: ordersComplete,
-        ordersItems: ordersInfo,
-        order: ordersInfo[onLoadOrder],
+        firstOrder,
         show: 'completed',
         page: 1
       }
