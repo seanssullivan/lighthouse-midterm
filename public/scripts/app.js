@@ -235,9 +235,31 @@ $(document).ready(function() {
     window.location.href = '/order'
   }
 
+  const setIntervalLoop = () => {
+    const intervalId = setInterval(()=> {
+      const orderId = 1;
+      $.get(`/admin/confirmation/${orderId}`)
+        .then(data => {
+          if (data.pickUpTime) {
+            const pickUpTime = new Date(data.pickUpTime);
+            const minutes = Math.round((pickUpTime.getTime() - Date.now()) / 1000 / 60);
+            $('#pending-block').hide();
+            $('#confirmed-block').show();
+            $('#pickUpTime').text(`${minutes}`);
+            $('#pending-bell').hide();
+            $('#confirmed-bell').show();
+
+            clearInterval(intervalId);
+          }
+        });
+    }, 5000);
+  }
+
   const submitPending = function() {
     $('.checkoutInfo__text').addClass('hide')
     $('.checkoutInfo__pending').removeClass('hide')
+
+    setIntervalLoop()
   }
 
   const submitError = function(error) {

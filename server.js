@@ -178,6 +178,15 @@ app.get("/admin/pending", async (req, res, next) => {
   
 })
 
+app.get('/admin/confirmation/:id', (req, res, next) => {
+  console.log('hello')
+  res.status(200).json({
+    data: {
+      pickupTime: "2020/03/25 13:24:23.34323"
+
+    }
+  })
+})
 
 app.get("/admin/completed", async (req, res, next) => {
   try {
