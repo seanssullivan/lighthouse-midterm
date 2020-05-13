@@ -191,12 +191,12 @@ app.get('/admin/confirmation/:id', (req, res, next) => {
 app.get("/admin/completed", async (req, res, next) => {
   try {
     const visitorId = req.session.user_id;
-    const ordersComplete = await db.orders.getCompleted({offset: 0, limit: 10})
-    // const orderComplete = ordersComplete[0];
-    // const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
+    const ordersComplete = await db.orders.getCompleted({offset: 5, limit: 10})
+    const orderComplete = ordersComplete[0];
+    const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
     
-    console.log(orderComplete)
-    // console.log(menuItem)
+    console.log(ordersComplete)
+    console.log(menuItem)
     res.render("admin", {
       data: {
         orders: ordersComplete,

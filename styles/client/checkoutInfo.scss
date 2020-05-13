@@ -50,4 +50,14 @@
     padding-top: 1rem;
     padding-left: 50px;
   }
+
+  &__pending,
+  &__confirmed {
+
+    &--title {
+      font-size: 2rem;
+      color: $primary__color;
+      text-align: center;
+    }
+  }
 }
