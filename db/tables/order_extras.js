@@ -82,7 +82,7 @@ class OrderExtrasTable {
    * @param {Number} orderId - The foreign key for the order.
    * @param {Array} extras
    */
-  add(orderId, extras) {
+  addMany(orderId, extras) {
     const queryString = `INSERT INTO order_extras (order_id, item_id, extra_id, quantity) VALUES `;
     const queryValues = [];
     let values = [];

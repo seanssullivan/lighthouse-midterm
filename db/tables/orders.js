@@ -61,7 +61,7 @@ class OrdersTable {
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
     this.db.query(insertOrderQueryString, values)
       .then((orderId) => this.db.orderItems.addMany(orderId, orderObj.items))
-      .then();
+      .then((items) => this.db.orderExtras.add(orderId, orderObj.extras));
   }
 
   /**
@@ -80,7 +80,13 @@ class OrdersTable {
   getPending({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ordered_at IS NOT NULL AND orders.confirmed_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString);
+      .query(queryString)
+      .then((orders) => {
+        for (const order of orders) {
+          order.items = await this.db.orderItems.get(order.id);
+        }
+        return orders;
+      });
   }
 
   /**
@@ -89,7 +95,13 @@ class OrdersTable {
   getConfirmed({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString);
+      .query(queryString)
+      .then((orders) => {
+        for (const order of orders) {
+          order.items = await this.db.orderItems.get(order.id);
+        }
+        return orders;
+      });
   }
 
    /**
@@ -112,7 +124,13 @@ class OrdersTable {
   getReady({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ready_at IS NOT NULL AND orders.completed_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString);
+      .query(queryString)
+      .then((orders) => {
+        for (const order of orders) {
+          order.items = await this.db.orderItems.get(order.id);
+        }
+        return orders;
+      });
   }
 
   /**
@@ -132,10 +150,16 @@ class OrdersTable {
   /**
    * Retrieves all completed orders.
    */
-  getCompleted({ offset, limit }) {
+  async getCompleted({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.completed_at IS NOT NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString);
+      .query(queryString)
+      .then((orders) => {
+        for (const order of orders) {
+          order.items = await this.db.orderItems.get(order.id);
+        }
+        return orders;
+      });
   }
 
    /**
