@@ -17,9 +17,25 @@ class OrdersTable {
     return `
       SELECT
         orders.id, orders.name, orders.phone, orders.email, orders.ordered_at,
-        COUNT(order_items.item_id) AS menu_items,
-        SUM(order_items.quantity) AS total_items,
+        ARRAY(
+          SELECT json_build_array(menu_items.id, menu_items.name, order_items.quantity)
+          FROM order_items
+          JOIN menu_items
+            ON menu_items.id = item_id
+          WHERE order_id = orders.id
+          GROUP BY menu_items.id, menu_items.name, order_items.quantity
+          ORDER BY menu_items.id
+        ) AS menu_items,
+        COUNT(order_items.order_id) AS num_items,
         SUM(ROUND(order_items.quantity * menu_items.cost * 100) / 100) AS total_cost,
+        ARRAY(
+          SELECT json_build_array(order_extras.item_id, extras.name, order_extras.quantity)
+          FROM extras
+          JOIN order_extras
+            ON order_extras.extra_id = extras.id
+          WHERE order_id = orders.id
+          ORDER BY extras.id
+        ) AS extras,
         (CASE
           WHEN orders.completed_at IS NOT NULL THEN 'completed'
           WHEN orders.ready_at IS NOT NULL THEN 'ready'
@@ -61,7 +77,7 @@ class OrdersTable {
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
     this.db.query(insertOrderQueryString, values)
       .then((orderId) => this.db.orderItems.addMany(orderId, orderObj.items))
-      .then((items) => this.db.orderExtras.add(orderId, orderObj.extras));
+      .then((items) => this.db.orderExtras.addMany(orderId, orderObj.extras));
   }
 
   /**
@@ -77,16 +93,10 @@ class OrdersTable {
   /**
    * Retrieves any pending orders.
    */
-  getPending({ offset, limit }) {
+  async getPending({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ordered_at IS NOT NULL AND orders.confirmed_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString)
-      .then((orders) => {
-        for (const order of orders) {
-          order.items = this.db.orderItems.get(order.id);
-        }
-        return orders;
-      });
+      .query(queryString);
   }
 
   /**
@@ -95,13 +105,7 @@ class OrdersTable {
   getConfirmed({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString)
-      .then((orders) => {
-        for (const order of orders) {
-          order.items = this.db.orderItems.get(order.id);
-        }
-        return orders;
-      });
+      .query(queryString);
   }
 
    /**
@@ -124,13 +128,7 @@ class OrdersTable {
   getReady({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ready_at IS NOT NULL AND orders.completed_at IS NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString)
-      .then((orders) => {
-        for (const order of orders) {
-          order.items = this.db.orderItems.get(order.id);
-        }
-        return orders;
-      });
+      .query(queryString);
   }
 
   /**
@@ -153,13 +151,7 @@ class OrdersTable {
   getCompleted({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.completed_at IS NOT NULL", offset: offset, limit: limit });
     return this.db
-      .query(queryString)
-      .then((orders) => {
-        for (const order of orders) {
-          order.items = this.db.orderItems.get(order.id);
-        }
-        return orders;
-      });
+      .query(queryString);
   }
 
    /**

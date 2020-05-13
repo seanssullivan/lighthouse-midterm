@@ -23,13 +23,7 @@ class OrderItemsTable {
       ORDER BY menu_items.id;
     `;
     return this.db
-      .query(queryString, [orderId])
-      .then((items) => {
-        for (const item of items) {
-          item.extras = this.db.orderExtras.get(orderId, item.id);
-        }
-        return items;
-      });
+      .query(queryString, [orderId]);
   }
 
   /**
@@ -78,6 +72,25 @@ class OrderItemsTable {
   }
 
   /**
+   * Retrieve all items for orders by their order_id.
+   * @param {Number} orderIds - The foreign keys for the orders.
+   * @param {Object} client
+   */
+  getMany(orderIds) {
+    const queryString = `
+      SELECT menu_items.id, menu_items.name, order_items.quantity
+      FROM order_items
+      JOIN menu_items
+        ON menu_items.id = item_id
+      WHERE order_id IN $1
+      ORDER BY menu_items.id;
+    `;
+    const ids = `(${orderIds.join(', ')})`;
+    return this.db
+      .query(queryString, [ids]);
+  }
+
+  /**
    * Inserts new order items.
    * @param {Number} orderId - The foreign key for the order.
    * @param {Array} items
@@ -89,7 +102,7 @@ class OrderItemsTable {
     let counter = 1;
     for (const item of items) {
       queryValues.push(`($${counter}, $${counter + 1}, $${counter + 3})`);
-      values = values.concat([ orderId, items.id, items.quantity ]);
+      values = values.concat([ orderId, item.id, item.quantity ]);
       counter += 3;
     }
     queryString = queryString + queryValues.join(', ') + 'RETURNING *;';
