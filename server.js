@@ -158,8 +158,11 @@ app.get("/order", (req, res, next) => {
 })
 
 app.post("/submit", (req, res, next) => {
-
+  const {name, email, phone, items, extras} = req.body
   console.log(req.body)
+
+  db.orders.add(req.body)
+
   res.status(201).send()
 })
 
@@ -170,22 +173,55 @@ app.get("/thankyou", (req, res, next) => {
 app.get("/admin/pending", async (req, res, next) => {
   try {
     const ordersPending = await db.orders.getPending({offset: 1, limit: 10})
-    console.log(ordersPending)
-    res.render("admin")
+    
+    
+    console.log("orders",ordersPending)
+    res.render("admin", {
+      data: {
+        show: 'pending',
+        orders: ordersPending
+      }
+    })
   } catch(err) {
     console.log(err)
   }
   
 })
 
-app.get('/admin/confirmation/:id', (req, res, next) => {
-  console.log('hello')
-  res.status(200).json({
-    data: {
-      pickupTime: "2020/03/25 13:24:23.34323"
+app.get("/admin/progress", async (req, res, next) => {
+  try {
+    const ordersPending = await db.orders.getConfirmed({offset: 1, limit: 10})
+    
+    
+    console.log("orders",ordersPending)
+    res.render("admin", {
+      data: {
+        show: 'progress',
+        orders: ordersPending
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
+})
 
-    }
-  })
+app.get("/admin/ready", async (req, res, next) => {
+  try {
+    const ordersPending = await db.orders.getReady({offset: 1, limit: 10})
+    
+    
+    console.log("orders",ordersPending)
+    res.render("admin", {
+      data: {
+        show: 'ready',
+        orders: ordersPending
+      }
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
 })
 
 app.get("/admin/completed", async (req, res, next) => {
@@ -206,6 +242,17 @@ app.get("/admin/completed", async (req, res, next) => {
   }
   
 })
+
+app.get('/admin/confirmation/:id', (req, res, next) => {
+  console.log('hello')
+  res.status(200).json({
+    data: {
+      pickupTime: "2020/03/25 13:24:23.34323"
+
+    }
+  })
+})
+
 
 // ~~ Catch all routes
 app.get("*", (req, res, next) => {

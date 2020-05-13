@@ -1,12 +1,18 @@
+// .ordersList {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+// }
 .ordersList,
 .ordersCompleted,
+.ordersProgress,
+.ordersReady,
+.ordersPending,
 .ordersCompletedList {
   background-color: $primary__color;
 
   height: 70vh;
   font-size: 1rem;
   padding-left: 1rem;
-  position: relative;
 
   &__title {
     font-size: 2rem;

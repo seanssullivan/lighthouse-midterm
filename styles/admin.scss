@@ -8,6 +8,7 @@
   height: 100vh;
   padding-top: calc((100vh - (100vh - 75px)) / 2);
 
+  &__pending,
   &__completed {
     display: grid;
     grid-template-columns: 1fr 1fr;

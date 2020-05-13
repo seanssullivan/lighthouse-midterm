@@ -5,14 +5,10 @@
     li.ordersList__item
       span.ordersList__item--id ID
       span.ordersList__item--timeStart TIME AGO
-      span.ordersList__item--flag FLAG
-      span.ordersList__item--timeFinish TIME TO
     for order in data.orders
       li.ordersList__item
         span.ordersList__item--id= order.id
         span.ordersList__item--timeStart= order.ordered_at
-        span.ordersList__item--flag 
-        span.ordersList__item--timeFinish
     
   .ordersList__index
     i(class="ordersList__index--prev fas fa-arrow-left")

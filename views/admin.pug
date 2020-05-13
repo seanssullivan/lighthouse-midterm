@@ -9,11 +9,18 @@ block content
       .admin__completed
         include components/admin/ordersCompleted
         include components/admin/orderInfoCompleted
-    else
+    else if data.show == 'pending'
       .admin__pending
         //- Orders
         include components/admin/ordersList
         include components/admin/orderInfo
+    else if data.show == 'progress'
+      .admin__progress
+        include components/admin/ordersProgress
+        include components/admin/orderProgressInfo
+    else if data.show == 'ready'
+        include components/admin/ordersReady
+        include components/admin/orderReadyInfo
 
     
 

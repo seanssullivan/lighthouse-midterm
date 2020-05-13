@@ -151,7 +151,7 @@ body {
   color: white;
   height: 100vh;
   padding-top: calc((100vh - (100vh - 75px)) / 2); }
-  .admin__completed {
+  .admin__pending, .admin__completed {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 30px; }
@@ -568,26 +568,37 @@ body {
 
 .ordersList,
 .ordersCompleted,
+.ordersProgress,
+.ordersReady,
+.ordersPending,
 .ordersCompletedList {
   background-color: #549BBa;
   height: 70vh;
   font-size: 1rem;
-  padding-left: 1rem;
-  position: relative; }
+  padding-left: 1rem; }
   .ordersList__title,
   .ordersCompleted__title,
+  .ordersProgress__title,
+  .ordersReady__title,
+  .ordersPending__title,
   .ordersCompletedList__title {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 10px; }
   .ordersList__list,
   .ordersCompleted__list,
+  .ordersProgress__list,
+  .ordersReady__list,
+  .ordersPending__list,
   .ordersCompletedList__list {
     list-style: none;
     width: 90%;
     margin: 0 -10px; }
   .ordersList__item,
   .ordersCompleted__item,
+  .ordersProgress__item,
+  .ordersReady__item,
+  .ordersPending__item,
   .ordersCompletedList__item {
     display: flex;
     justify-content: space-between;
@@ -595,31 +606,49 @@ body {
     padding-top: 30px; }
   .ordersList__index,
   .ordersCompleted__index,
+  .ordersProgress__index,
+  .ordersReady__index,
+  .ordersPending__index,
   .ordersCompletedList__index {
     position: absolute;
     bottom: 30px; }
     .ordersList__index--prev,
     .ordersCompleted__index--prev,
+    .ordersProgress__index--prev,
+    .ordersReady__index--prev,
+    .ordersPending__index--prev,
     .ordersCompletedList__index--prev {
       position: absolute;
       left: 30px; }
     .ordersList__index--text,
     .ordersCompleted__index--text,
+    .ordersProgress__index--text,
+    .ordersReady__index--text,
+    .ordersPending__index--text,
     .ordersCompletedList__index--text {
       position: absolute;
       left: 120px; }
     .ordersList__index--page,
     .ordersCompleted__index--page,
+    .ordersProgress__index--page,
+    .ordersReady__index--page,
+    .ordersPending__index--page,
     .ordersCompletedList__index--page {
       position: absolute;
       left: 300px; }
     .ordersList__index--next,
     .ordersCompleted__index--next,
+    .ordersProgress__index--next,
+    .ordersReady__index--next,
+    .ordersPending__index--next,
     .ordersCompletedList__index--next {
       position: absolute;
       left: 420px; }
   .ordersList__listTitle,
   .ordersCompleted__listTitle,
+  .ordersProgress__listTitle,
+  .ordersReady__listTitle,
+  .ordersPending__listTitle,
   .ordersCompletedList__listTitle {
     display: flex;
     justify-content: space-between;
@@ -632,12 +661,24 @@ body {
     padding-bottom: 0; }
     .ordersList__listTitle--day,
     .ordersCompleted__listTitle--day,
+    .ordersProgress__listTitle--day,
+    .ordersReady__listTitle--day,
+    .ordersPending__listTitle--day,
     .ordersCompletedList__listTitle--day {
       text-align: center; }
     .ordersList__listTitle--id, .ordersList__listTitle--day, .ordersList__listTitle--total,
     .ordersCompleted__listTitle--id,
     .ordersCompleted__listTitle--day,
     .ordersCompleted__listTitle--total,
+    .ordersProgress__listTitle--id,
+    .ordersProgress__listTitle--day,
+    .ordersProgress__listTitle--total,
+    .ordersReady__listTitle--id,
+    .ordersReady__listTitle--day,
+    .ordersReady__listTitle--total,
+    .ordersPending__listTitle--id,
+    .ordersPending__listTitle--day,
+    .ordersPending__listTitle--total,
     .ordersCompletedList__listTitle--id,
     .ordersCompletedList__listTitle--day,
     .ordersCompletedList__listTitle--total {

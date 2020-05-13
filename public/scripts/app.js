@@ -312,6 +312,22 @@ $(document).ready(function() {
     })
   }
 
+  const adminPending = function() {
+    window.location.href = '/admin/pending'
+  }
+
+  const adminProgress = function() {
+    window.location.href = '/admin/progress'
+  }
+
+  const adminReady = function() {
+    window.location.href = '/admin/ready'
+  }
+
+  const adminCompleted = function() {
+    window.location.href = '/admin/completed'
+  }
+
   // ~~ Client Click events
   
   $('.itemInfo__topping--add').click(addTopping)
@@ -328,7 +344,10 @@ $(document).ready(function() {
   refreshCheckout()
   
   // ~~ Admin Click Events
-  // $('.')
+  $('.adminNav__pending').click(adminPending)
+  $('.adminNav__progress').click(adminProgress)
+  $('.adminNav__ready').click(adminReady)
+  $('.adminNav__completed').click(adminCompleted)
   
 })
 
