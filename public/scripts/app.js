@@ -305,7 +305,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "POST",
-      url: '/submit',
+      url: '/api/orders/add',
       data: formData,
       success: submitPending,
       error: submitError
