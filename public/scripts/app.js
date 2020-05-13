@@ -233,12 +233,10 @@ $(document).ready(function() {
   $('.menuItem__button--add').click(addItemMain)
   $('.menuItem__button--info').click(renderMenuItem);
   
+  refreshCheckout()
   
   // ~~ Admin Click Events
   // $('.')
-  
-  refreshCheckout()
-  
   
 })
 
