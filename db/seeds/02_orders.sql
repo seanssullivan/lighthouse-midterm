@@ -9,5 +9,5 @@ INSERT INTO orders (name, phone, email, ordered_at, confirmed_at, estimated_time
 ('Osbaldo Fahey', '1-715-773-4084 x92494', 'Wilber_Zemlak81@yahoo.com', '2020-01-01T08:01:28.429Z', '2020-01-01T08:06:28.429Z', '27', '2020-01-01T08:39:28.429Z', '2020-01-01T08:54:28.429Z', ''),
 ('Mr. Madyson Runolfsdottir', '(020) 812-0999 x0350', 'Dayne_Medhurst@hotmail.com', '2020-01-01T08:01:29.524Z', '2020-01-01T08:02:29.524Z', '60', '2020-01-01T08:12:29.524Z', '2020-01-01T08:18:29.524Z', ''),
 ('Abbie Conn', '1-301-040-4418 x7480', 'Dariana.Towne@gmail.com', '2020-01-01T08:01:36.222Z', '2020-01-01T08:03:36.222Z', '45', '2020-01-01T08:54:36.222Z', '2020-01-01T08:59:36.222Z', ''),
-('Mrs. Tremayne McKenzie', '411.619.8066', 'Hosea_Friesen25@gmail.com', '2020-01-01T08:02:10.546Z', '2020-01-01T08:06:10.546Z', '33', '2020-01-01T08:54:10.546Z', '2020-01-01T08:59:10.546Z', ''),
-('King Fadel', '217.539.2585 x25966', 'Addie48@hotmail.com', '2020-01-01T08:02:40.473Z', '2020-01-01T08:03:40.473Z', '54', '2020-01-01T08:47:40.473Z', '2020-01-01T09:01:40.473Z', '');
+('Mrs. Tremayne McKenzie', '411.619.8066', 'Hosea_Friesen25@gmail.com', '2020-01-01T08:02:10.546Z', '2020-01-01T08:06:10.546Z', '33', null, null, null),
+('King Fadel', '217.539.2585 x25966', 'Addie48@hotmail.com', '2020-01-01T08:02:40.473Z', null, null, null, null, null);

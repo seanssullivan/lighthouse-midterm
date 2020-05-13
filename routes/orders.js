@@ -34,6 +34,7 @@ module.exports = (db) => {
 
     db.orders.getPending({ offset: 0, limit: 10 })
       .then(data => {
+        console.log(data);
         res.json({
           status: 'success',
           results: data.length,
@@ -103,7 +104,7 @@ module.exports = (db) => {
    * Adds a new order.
    */
   router.post("/add", (req, res, next) => {
-    
+
     db.orders.add(req.body)
       .then(data => {
         res.status(201).json({

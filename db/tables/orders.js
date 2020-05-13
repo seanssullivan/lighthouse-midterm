@@ -50,7 +50,7 @@ class OrdersTable {
       GROUP BY orders.id, orders.name, orders.phone, orders.email, ordered_at
       ${having ? 'HAVING ' + having : ''}
       ORDER BY orders.ordered_at ASC
-      ${limit ? 'LIMIT ' + limit : ''}${ limit && offset ? 'OFFSET ' + offset : ''};
+      ${limit ? 'LIMIT ' + limit : ''}${ limit && offset ? ' OFFSET ' + offset : ''};
     `;
   }
 
@@ -69,8 +69,8 @@ class OrdersTable {
    */
   add(orderObj) {
     const insertOrderQueryString = `
-      INSERT INTO orders (name, phone, email)
-      VALUES ($1, $2, $3)
+      INSERT INTO orders (name, phone, email, ordered_at)
+      VALUES ($1, $2, $3, NOW())
       RETURNING *;
     `;
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
@@ -103,6 +103,7 @@ class OrdersTable {
    */
   async getPending({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ordered_at IS NOT NULL AND orders.confirmed_at IS NULL", offset: offset, limit: limit });
+    console.log(queryString);
     return this.db
       .query(queryString);
   }
