@@ -13,7 +13,7 @@ class OrderItemsTable {
    * Retrieve all items for an order by their order_id.
    * @param {Number} orderId - The foreign key for the order.
    */
-  async get(orderId) {
+  get(orderId) {
     const queryString = `
       SELECT menu_items.id, menu_items.name, order_items.quantity
       FROM order_items
@@ -26,7 +26,7 @@ class OrderItemsTable {
       .query(queryString, [orderId])
       .then((items) => {
         for (const item of items) {
-          item.extras = await this.db.orderExtras.get(orderId, item.id);
+          item.extras = this.db.orderExtras.get(orderId, item.id);
         }
         return items;
       });
