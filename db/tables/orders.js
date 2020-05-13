@@ -77,7 +77,7 @@ class OrdersTable {
   /**
    * Retrieves any pending orders.
    */
-  getPending({ offset, limit }) {
+  async getPending({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ordered_at IS NOT NULL AND orders.confirmed_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString)
@@ -92,7 +92,7 @@ class OrdersTable {
   /**
    * Retrieves any confirmed orders.
    */
-  getConfirmed({ offset, limit }) {
+  async getConfirmed({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.confirmed_at IS NOT NULL AND orders.ready_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString)
@@ -121,7 +121,7 @@ class OrdersTable {
   /**
    * Retrieves any ready orders.
    */
-  getReady({ offset, limit }) {
+  async getReady({ offset, limit }) {
     const queryString = this._buildSelectQuery({ where: '', having: "orders.ready_at IS NOT NULL AND orders.completed_at IS NULL", offset: offset, limit: limit });
     return this.db
       .query(queryString)
