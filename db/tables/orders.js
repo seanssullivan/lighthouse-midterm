@@ -17,7 +17,7 @@ class OrdersTable {
     return `
       SELECT
         orders.id, orders.name, orders.phone, orders.email, orders.ordered_at,
-        COUNT(order_items.id) AS menu_items,
+        COUNT(order_items.item_id) AS menu_items,
         SUM(order_items.quantity) AS total_items,
         SUM(ROUND(order_items.quantity * menu_items.cost * 100) / 100) AS total_cost,
         (CASE
