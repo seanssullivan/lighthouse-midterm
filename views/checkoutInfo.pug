@@ -1,0 +1,24 @@
+extends base
+
+block content
+  .checkoutInfo
+    .checkoutInfo__text
+      h3.checkoutInfo__title Your Info
+      .checkoutInfo__form
+        .checkoutInfo__form--name
+          span Name:
+          input(placeholder="Matt Stonie")
+        .checkoutInfo__form--email
+          span Email:
+          input(placeholder="mattStonie@greatestPancakeEater.com")
+        .checkoutInfo__form--phone
+          span Phone:
+          input(placeholder="555-555-5555")
+      .checkoutInfo__submit
+        .button__primaryInvert Submit
+    .checkoutInfo__pending.hide
+      h3.checkoutInfo__pending--title Waiting for confirmation
+    .checkoutInfo__confirmed.hide
+      h3.checkoutInfo__confirmed--title Your Order Will Be Ready In
+    .checkoutInfo__checkout
+      include components/client/checkout
