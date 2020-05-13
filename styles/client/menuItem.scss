@@ -8,14 +8,14 @@
   &__pic {
     background-color: $secondary__color;
     margin: 0.5rem;
-    height: 400px;
     display: flex;
+    height: 400px;
     justify-content: center;
     align-items: center;
 
     img {
-      width: 100%;
-      height: auto;
+      width: auto;
+      height: 100%;
     }
   }
 

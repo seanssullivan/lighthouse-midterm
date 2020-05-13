@@ -3,7 +3,7 @@ extends base
 block content
   <div class="itemInfo" id=#{data.menu.id}>
     .itemInfo__img
-      img(src='http://www.pngmart.com/files/5/Pancakes-PNG-Transparent-Image.png')
+      img(src=data.menu.image_url)
     .itemInfo__text
       h3.itemInfo__text--title= data.menu.name
       p.itemInfo__text--desc= data.menu.description

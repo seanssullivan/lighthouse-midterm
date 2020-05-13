@@ -154,12 +154,13 @@ app.get("/menu/:id", async (req, res, next) => {
 })
 
 app.get("/order", (req, res, next) => {
-  res.render("orderinfo")
+  res.render("checkoutInfo")
 })
 
-app.get("/submit", (req, res, next) => {
+app.post("/submit", (req, res, next) => {
 
   console.log(req.body)
+  res.status(201).send()
 })
 
 app.get("/thankyou", (req, res, next) => {
@@ -181,9 +182,9 @@ app.get("/admin/pending", async (req, res, next) => {
 app.get("/admin/completed", async (req, res, next) => {
   try {
     const visitorId = req.session.user_id;
-    const ordersComplete = await db.orders.getCompleted({offset: 0, limit: 10})
-    const orderComplete = ordersComplete[0];
-    const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
+    const ordersComplete = await db.orders.getPending({offset: 0, limit: 10})
+    // const orderComplete = ordersComplete[0];
+    // const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
     
     console.log(orderComplete)
     // console.log(menuItem)

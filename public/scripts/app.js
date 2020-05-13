@@ -231,15 +231,72 @@ $(document).ready(function() {
     refreshCheckout()
   }
 
+  const checkoutInfo = function() {
+    window.location.href = '/order'
+  }
+
+  const submitPending = function() {
+    $('.checkoutInfo__text').addClass('hide')
+    $('.checkoutInfo__pending').removeClass('hide')
+  }
+
+  const submitError = function(error) {
+    console.log(error)
+  }
+
+  const submitInfo = function() {
+    const storedOrder = window.localStorage.getItem('order')
+    let order = JSON.parse(storedOrder)
+    const { extras, items } = order;
+    const name = $( this ).siblings().last().children().first().children().last().val()
+    const email = $( this ).siblings().last().children().first().next().children().last().val()
+    const phone = $( this ).siblings().last().children().first().next().next().children().last().val()
+    
+    const itemArray = []
+    const extrasArray = []
+
+    for (id in items) {
+      const obj = {}
+      obj.id = id;
+      obj.quantity = items[id].quantity
+      itemArray.push(obj)
+    }
+
+    for (id in extras) {
+      const obj = {};
+      obj.id = id;
+      obj.quantity = extras[id].quantity
+      extrasArray.push(obj)
+    }
+
+    const formData = {
+      name,
+      email,
+      phone,
+      items: itemArray,
+      extras: extrasArray
+    }
+
+    $.ajax({
+      type: "POST",
+      url: '/submit',
+      data: formData,
+      success: submitPending,
+      error: submitError
+    })
+  }
+
   // ~~ Client Click events
   
   $('.itemInfo__topping--add').click(addTopping)
   $('.itemInfo__topping--minus').click(removeTopping)
   $('.itemInfo__add').children().last().click(addItem)
   
-  
   $('.menuItem__button--add').click(addItemMain)
   $('.menuItem__button--info').click(renderMenuItem);
+
+  $('.checkout__button').click(checkoutInfo)
+  $('.checkoutInfo__submit').click(submitInfo)
   
   refreshCheckout()
   
