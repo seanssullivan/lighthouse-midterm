@@ -3,14 +3,9 @@
   .underline
   ul.orderInfoCompleted__list
     - console.log(data.firstOrder.menu_items)
-    li.orderInfoCompleted__item
-      span.orderInfoCompleted__item--title Stack Overflowed
-      span.orderInfoCompleted__item--quantity X1
-    li.orderInfoCompleted__item
-      span.orderInfoCompleted__item--title Stack Overflowed
-      span.orderInfoCompleted__item--quantity X1
-    li.orderInfoCompleted__item
-      span.orderInfoCompleted__item--title Stack Overflowed
-      span.orderInfoCompleted__item--quantity X1
+    for item in data.firstOrder.menu_items
+      li.orderInfoCompleted__item
+        span.orderInfoCompleted__item--title= item[1]
+        span.orderInfoCompleted__item--quantity= 'X' + item[2]
   .orderInfoCompleted__timeline
     include timelineCompleted
