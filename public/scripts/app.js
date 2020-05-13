@@ -32,6 +32,7 @@ $(document).ready(function() {
     let list = '';
     let listExtras = ''
     let total = 0;
+    
     const { extras, items } = order;
     
     for (id in items) {
@@ -43,13 +44,16 @@ $(document).ready(function() {
     for (extra in extras) {
       const sub = 0.99 * extras[extra].quantity
       total = total + sub;
-      listExtras = listExtras + renderExtraHtml(id, extras[extra])
+      listExtras = listExtras + renderExtraHtml(extra, extras[extra])
     }
     total = total.toFixed(2)
     
     $('.checkout__list').empty().append(list)
     $('.checkout__toppings').empty().append(listExtras)
     $('.checkout__total--price').text(total)
+
+    $('.checkout__toppings--delete').click(deleteTopping)
+    $('.checkout__list--delete').click(deleteItem)
   }
   
   const renderMenuItem = function(e) {
@@ -68,11 +72,58 @@ $(document).ready(function() {
   
   const addItem = function() {
     const storedOrder = window.localStorage.getItem('order')
-    const parentId = $( this ).parent().parent().parent().attr("id");
     let order = JSON.parse(storedOrder)
+    const parentId = $( this ).parent().parent().parent().attr("id");
     const itemPrice = $( this ).parent().children().first().children().last().text()
     const itemName = $( this ).parent().parent().children().first().text()
   
+    if (order === null) {
+      order = {}
+      order.items = {
+        [parentId]: {
+          quantity: 0,
+          price: itemPrice,
+          name: itemName
+        }
+      }
+    } else if (order.items === undefined) {
+      order.items = {
+        [parentId]: {
+          quantity: 0,
+          price: itemPrice,
+          name: itemName
+        }
+      }
+    } else if (order.items[parentId] === undefined) {
+      order.items[parentId] = {
+        quantity: 0,
+        price: itemPrice,
+        name: itemName
+      }
+    } else if (order.items[parentId].quantity === null) {
+      order.items = {
+        [parentId]: {
+          quantity: 0,
+          price: itemPrice,
+          name: itemName
+        }
+      }
+    }
+  
+    order.items[parentId].quantity++
+    
+    window.localStorage.setItem('order', JSON.stringify(order))
+    refreshCheckout()
+  }
+
+  const addItemMain = function() {
+    const storedOrder = window.localStorage.getItem('order')
+    let order = JSON.parse(storedOrder)
+    const parentId = $( this ).parent().attr("id");
+    const itemPrice = $( this ).parent().children().first().next().children().last().text()
+    const itemName = $( this ).parent().children().first().next().children().first().text()
+    
+
     if (order === null) {
       order = {}
       order.items = {
@@ -154,16 +205,40 @@ $(document).ready(function() {
     refreshCheckout()
   }
 
+  const deleteTopping = function() {
+    const storedOrder = window.localStorage.getItem('order')
+    let order = JSON.parse(storedOrder)
+    const id = $( this ).parent().attr("id")
+    delete order.extras[id]
+    window.localStorage.setItem('order', JSON.stringify(order))
+    refreshCheckout()
+  }
+
+  const deleteItem = function() {
+    const storedOrder = window.localStorage.getItem('order')
+    let order = JSON.parse(storedOrder)
+    const id = $( this ).parent().attr("id")
+    delete order.items[id]
+    window.localStorage.setItem('order', JSON.stringify(order))
+    refreshCheckout()
+  }
+
   // ~~ Client Click events
+  
   $('.itemInfo__topping--add').click(addTopping)
   $('.itemInfo__topping--minus').click(removeTopping)
   $('.itemInfo__add').children().last().click(addItem)
-
+  
+  
+  $('.menuItem__button--add').click(addItemMain)
   $('.menuItem__button--info').click(renderMenuItem);
-
+  
+  
   // ~~ Admin Click Events
   // $('.')
-
+  
   refreshCheckout()
+  
+  
 })
 
