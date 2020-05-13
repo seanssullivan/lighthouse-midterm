@@ -174,7 +174,6 @@ app.get("/admin/pending", async (req, res, next) => {
   try {
     const ordersPending = await db.orders.getPending({offset: 1, limit: 10})
     
-    
     console.log("orders",ordersPending)
     res.render("admin", {
       data: {
