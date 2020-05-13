@@ -71,6 +71,29 @@ class OrderItemsTable {
       });
   }
 
+  /**
+   * Inserts new order items.
+   * @param {Number} orderId - The foreign key for the order.
+   * @param {Array} items
+   */
+  addMany(orderId, items) {
+    let queryString = 'INSERT INTO order_items (order_id, item_id, quantity) VALUES ';
+    const queryValues = [];
+    let values = [];
+    let counter = 1;
+    for (const item of items) {
+      queryValues.push(`($${counter}, $${counter + 1}, $${counter + 3})`);
+      values = values.concat([ orderId, items.id, items.quantity ]);
+      counter += 3;
+    }
+    queryString = queryString + queryValues.join(', ') + 'RETURNING *;';
+    return this.db
+      .query(queryString, values)
+      .then(items => {
+        return items[0];
+      });
+  }
+
 }
 
 module.exports = OrderItemsTable;

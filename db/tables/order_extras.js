@@ -77,6 +77,29 @@ class OrderExtrasTable {
       });
   }
 
+  /**
+   * Inserts new item extras.
+   * @param {Number} orderId - The foreign key for the order.
+   * @param {Array} extras
+   */
+  add(orderId, extras) {
+    const queryString = `INSERT INTO order_extras (order_id, item_id, extra_id, quantity) VALUES `;
+    const queryValues = [];
+    let values = [];
+    let counter = 1;
+    for (const extra of extras) {
+      queryValues.push(`($${counter}, $${counter + 1}, $${counter + 3}, $${counter + 4})`);
+      values = values.concat([ orderId, extra.item_id, extra.id, extra.quantity ]);
+      counter += 4;
+    }
+    queryString = queryString + queryValues.join(', ') + 'RETURNING *;';
+    return this.db
+      .query(queryString, values)
+      .then(items => {
+        return items[0];
+      });
+  }
+
 }
 
 module.exports = OrderExtrasTable;
