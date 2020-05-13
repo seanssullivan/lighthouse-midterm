@@ -75,7 +75,7 @@ class OrdersTable {
     `;
 
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
-    this.db.query(insertOrderQueryString, values)
+    return this.db.query(insertOrderQueryString, values)
       .then((orderId) => this.db.orderItems.addMany(orderId, orderObj.items))
       .then((items) => this.db.orderExtras.addMany(orderId, orderObj.extras));
   }
