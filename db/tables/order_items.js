@@ -101,16 +101,13 @@ class OrderItemsTable {
     let values = [];
     let counter = 1;
     for (const item of items) {
-      queryValues.push(`($${counter}, $${counter + 1}, $${counter + 3})`);
+      queryValues.push(`($${counter}, $${counter + 1}, $${counter + 2})`);
       values = values.concat([ orderId, item.id, item.quantity ]);
       counter += 3;
     }
-    queryString = queryString + queryValues.join(', ') + 'RETURNING *;';
+    queryString = queryString + queryValues.join(', ') + ' RETURNING *;';
     return this.db
-      .query(queryString, values)
-      .then(items => {
-        return items[0];
-      });
+      .query(queryString, values);
   }
 
 }
