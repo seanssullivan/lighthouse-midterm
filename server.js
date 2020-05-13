@@ -157,6 +157,11 @@ app.get("/order", (req, res, next) => {
   res.render("orderinfo")
 })
 
+app.get("/submit", (req, res, next) => {
+
+  console.log(req.body)
+})
+
 app.get("/thankyou", (req, res, next) => {
   res.render("thankyou")
 })
@@ -180,7 +185,8 @@ app.get("/admin/completed", async (req, res, next) => {
     const orderComplete = ordersComplete[0];
     const menuItem = db.menuItems.get(visitorId, orderComplete.menu_items);
     
-    console.log(menuItem)
+    console.log(orderComplete)
+    // console.log(menuItem)
     res.render("admin", {
       data: {
         orders: ordersComplete,
@@ -194,6 +200,7 @@ app.get("/admin/completed", async (req, res, next) => {
   }
   
 })
+
 // ~~ Catch all routes
 app.get("*", (req, res, next) => {
   res.status(404).send('sorry you got lost')

@@ -25,6 +25,13 @@ $(document).ready(function() {
       </li> 
     `
   }
+
+  const handleCheckout = () => {
+    const storedOrder = window.localStorage.getItem('order')
+    let order = JSON.parse(storedOrder)
+
+    console.log(order)
+  }
   
   const refreshCheckout = function() {
     const storedOrder = window.localStorage.getItem('order')
@@ -54,6 +61,7 @@ $(document).ready(function() {
 
     $('.checkout__toppings--delete').click(deleteTopping)
     $('.checkout__list--delete').click(deleteItem)
+    $('.checkout__button').click(handleCheckout)
   }
   
   const renderMenuItem = function(e) {
