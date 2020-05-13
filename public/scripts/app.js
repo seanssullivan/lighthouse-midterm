@@ -329,6 +329,22 @@ $(document).ready(function() {
     window.location.href = '/admin/completed'
   }
 
+  const reloadPage = function() {
+    window.location.reload()
+  }
+
+  const submitToPending = function() {
+    const id = $( this ).parent().children().first().text().split(' ')[1]
+    $.ajax({
+      type: 'POST',
+      url: `../api/orders/${id}/confirm`,
+      data: {mins: 10},
+      success: reloadPage,
+      error: submitError
+    })
+  }
+
+
   // ~~ Client Click events
   
   $('.itemInfo__topping--add').click(addTopping)
@@ -349,7 +365,8 @@ $(document).ready(function() {
   $('.adminNav__progress').click(adminProgress)
   $('.adminNav__ready').click(adminReady)
   $('.adminNav__completed').click(adminCompleted)
-  
+  // $('ordersList__item').click(selectItem)
+  $('.orderInfo__button').click(submitToPending)
 })
 
 // const setIntervalLoop = () => {

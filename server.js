@@ -159,7 +159,7 @@ app.get("/order", (req, res, next) => {
 
 app.post("/submit", (req, res, next) => {
   const {name, email, phone, items, extras} = req.body
-  console.log(req.body)
+
 
   db.orders.add(req.body)
 
@@ -174,11 +174,12 @@ app.get("/admin/pending", async (req, res, next) => {
   try {
     const ordersPending = await db.orders.getPending({offset: 1, limit: 10})
     
-    console.log("orders",ordersPending)
+    // console.log("orders",ordersPending)
     res.render("admin", {
       data: {
         show: 'pending',
-        orders: ordersPending
+        orders: ordersPending,
+        firstOrder: ordersPending[0]
       }
     })
   } catch(err) {

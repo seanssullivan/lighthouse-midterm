@@ -1,27 +1,14 @@
 .orderInfo
-  h3.orderInfo__title ORDER
+  h3.orderInfo__title= 'ORDER ' + data.firstOrder.id 
   .underline
   ul.orderInfo__list
-    li.orderInfo__item
-      span.orderInfo__item--title Stack Overflowed
-      span.orderInfo__item--quantity X1
-      ul.orderInfo__item--extras
-        li MAPLE SYRUP
-        li WHIPPED BUTTER
-        li WHIPPED BUTTER
-        li WHIPPED BUTTER
-    li.orderInfo__item
-      span.orderInfo__item--title Stack Overflowed
-      span.orderInfo__item--quantity X1
-      ul.orderInfo__item--extras
-        li MAPLE SYRUP
-        li WHIPPED BUTTER
-    li.orderInfo__item
-      span.orderInfo__item--title Stack Overflowed
-      span.orderInfo__item--quantity X1
-      ul.orderInfo__item--extras
-        li MAPLE SYRUP
-        li WHIPPED BUTTER
+    - console.log(data.firstOrder)
+    for item in data.firstOrder.menu_items
+      <li class="orderInfo__item">
+        span.orderInfo__item--title= item[1]
+        span.orderInfo__item--quantity= 'X' + item[2]
+        
+      </li>
   .orderInfo__timeline
     include timeline
   div(class="orderInfo__button button__primary") NEXT

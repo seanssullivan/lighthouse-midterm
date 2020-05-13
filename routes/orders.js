@@ -104,7 +104,6 @@ module.exports = (db) => {
    * Adds a new order.
    */
   router.post("/add", (req, res, next) => {
-
     db.orders.add(req.body)
       .then(data => {
         res.status(201).json({

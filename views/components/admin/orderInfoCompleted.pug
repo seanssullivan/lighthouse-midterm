@@ -2,7 +2,6 @@
   h3.orderInfoCompleted__title ORDER
   .underline
   ul.orderInfoCompleted__list
-    - console.log(data.firstOrder.menu_items)
     for item in data.firstOrder.menu_items
       li.orderInfoCompleted__item
         span.orderInfoCompleted__item--title= item[1]

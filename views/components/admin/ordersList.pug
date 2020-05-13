@@ -6,10 +6,10 @@
       span.ordersList__item--id ID
       span.ordersList__item--timeStart TIME AGO
     for order in data.orders
-      li.ordersList__item
+      <li class="ordersList__item">
         span.ordersList__item--id= order.id
         span.ordersList__item--timeStart= order.ordered_at
-    
+      </li>
   .ordersList__index
     i(class="ordersList__index--prev fas fa-arrow-left")
     span.ordersList__index--text PAGE
