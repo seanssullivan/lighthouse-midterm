@@ -71,13 +71,21 @@ class OrdersTable {
     const insertOrderQueryString = `
       INSERT INTO orders (name, phone, email)
       VALUES ($1, $2, $3)
-      RETURNING id;
+      RETURNING *;
     `;
-
     const values = [ orderObj.name, orderObj.phone, orderObj.email ];
     return this.db.query(insertOrderQueryString, values)
-      .then((orderId) => this.db.orderItems.addMany(orderId, orderObj.items))
-      .then((items) => this.db.orderExtras.addMany(orderId, orderObj.extras));
+      .then((res) => {
+        const order = res[0];
+        order.items = this.db.orderItems.addMany(order.id, orderObj.items);
+        return order;
+      })
+      .then((order) => {
+        if (orderObj.extras) {
+          order.extras = this.db.orderExtras.addMany(order.id, orderObj.extras);
+        }
+        return order;
+      });
   }
 
   /**
